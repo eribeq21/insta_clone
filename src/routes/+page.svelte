@@ -209,6 +209,41 @@
 				<button class="cursor-pointer font-semibold text-blue-400">Post</button>
 			</div>
 		</div>
+		<div class="rounded-lg bg-black">
+			<div class="mb-4">
+				<div class="flex flex-row items-center gap-2 text-center">
+					<div class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
+						<div class="wrapper h-10 w-10 overflow-hidden rounded-full border-2 border-black bg-white">
+							<img class="h-full w-full object-cover rounded-full" src="Eriseldi.jpg" alt="Eriseldi" />
+						</div>
+					</div>
+					<p class="pt-1 pb-2 text-sm font-semibold text-white">Eriseldi</p>
+				</div>
+			</div>
+			<div>
+				<div>
+					<img class="w-full" src="https://picsum.photos/600/400/?random" alt="Random Image" />
+				</div>
+			</div>
+	
+			<div class="space-y-1 pt-1 pb-2 text-sm">
+				<div>
+					<p class="cursor-pointer font-semibold text-white">37.103 likes</p>
+				</div>
+				<div>
+					<p class="cursor-pointer text-white">Any text would work to exemplify this post :)</p>
+				</div>
+				<div>
+					<p class="cursor-pointer text-gray-500">View all 400 comments</p>
+				</div>
+			</div>
+			<div class="flex flex-row justify-between space-x-3 py-3">
+				<div class="">
+					<p class="text-sm text-gray-400">Add a comment...</p>
+				</div>
+				<button class="cursor-pointer font-semibold text-blue-400">Post</button>
+			</div>
+		</div>
 	</section>
 	
 </div>
