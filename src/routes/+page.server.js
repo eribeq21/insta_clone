@@ -5,4 +5,14 @@ export async function load({ locals }) {
     if (!locals.user) {
 		redirect(302, '/login');
 	}
+
+	let connection = await createConnection();
+	let [rows] = await connection.execute(
+		'SELECT * from articles'
+	);
+
+	return{
+		articles: rows
+	}
+
 }

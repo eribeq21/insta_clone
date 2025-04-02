@@ -32,6 +32,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@vercel/blob": "^0.27.3",
 		"bcrypt": "^5.1.1",
 		"mysql2": "^3.14.0"
 	}
