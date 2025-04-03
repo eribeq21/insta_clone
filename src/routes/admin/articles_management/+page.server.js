@@ -1,18 +1,16 @@
 import { createConnection } from '$lib/db/mysql';
 import { redirect } from '@sveltejs/kit';
 
-export async function load({ locals }) {
+export async function load({ locals, fetch }) {
 	if (!locals.user || locals.user.role !== 'admin') {
 		redirect(302, '/login');
 	}
-	let connection = await createConnection();
-	let [rows] = await connection.execute(
-        'select * from articles'
-	);
+	const res = await fetch('/api/articles');
+	const data = await res.json();
 
-	return {
-		articles: rows
-	};
+	let articles = data.articles;
+
+	return { articles };
 }
 
 export const actions = {

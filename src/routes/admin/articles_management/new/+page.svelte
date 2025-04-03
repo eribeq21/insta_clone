@@ -6,9 +6,11 @@
 	let { form } = $props();
 </script>
 
-<main class="flex h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-6">
+<main
+	class="flex h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 p-6 lg:ml-[220px]"
+>
 	<div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
-		<h1 class="mb-6 text-center text-3xl font-bold text-gray-800">Upload an Image</h1>
+		<h1 class="mb-6 text-center text-3xl font-bold text-gray-800">Make a new Post</h1>
 
 		<form
 			action="?/upload"
@@ -19,7 +21,7 @@
 		>
 			<!-- File Upload Input -->
 			<label class="block">
-				<span class="text-gray-700 font-medium">Choose an Image:</span>
+				<span class="font-medium text-gray-700">Choose an Image:</span>
 				<input
 					type="file"
 					name="image"
@@ -29,7 +31,7 @@
 
 			<!-- Description Input -->
 			<label class="block">
-				<span class="text-gray-700 font-medium">Description:</span>
+				<span class="font-medium text-gray-700">Description:</span>
 				<input
 					type="text"
 					name="description"
@@ -40,7 +42,7 @@
 
 			<!-- Author Input -->
 			<label class="block">
-				<span class="text-gray-700 font-medium">Author:</span>
+				<span class="font-medium text-gray-700">Author:</span>
 				<input
 					type="text"
 					name="author"
@@ -54,19 +56,14 @@
 				type="submit"
 				class="w-full rounded-lg bg-blue-500 px-4 py-2 font-semibold text-white shadow-md transition-all duration-200 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400"
 			>
-				Upload my Image
+				Post
 			</button>
 		</form>
 
 		<!-- Uploaded Image Preview -->
 		{#if form}
 			<div class="mt-6 flex flex-col items-center">
-				<p class="text-gray-700 font-medium">Uploaded Image:</p>
-				<img
-					src={form.uploaded}
-					alt="Uploaded"
-					class="mt-2 h-auto max-w-full rounded-lg border border-gray-300 shadow-md"
-				/>
+				<p class="font-medium text-green-700">Post succes</p>
 			</div>
 		{/if}
 	</div>

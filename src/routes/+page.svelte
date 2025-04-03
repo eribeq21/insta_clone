@@ -1,143 +1,245 @@
-<script lang="javascript">
+<script>
+	import { enhance } from '$app/forms';
 	let { data } = $props();
-;</script>
 
-<div class="bg-black">
+	let showComments = $state(false);
 
-
-
-
-    <!-- Story Section -->
-
-	<section class="mx-auto max-w-screen-md px-4">
-		<div class="py-4">
-			<div class="mt-4 rounded-lg bg-black">
-				<div class="flex overflow-x-auto space-x-4 px-4 py-2">
-					<!-- User Profile 1 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-cover rounded-full" src="Eriseldi.jpg" alt="Eriseldi" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">Eriseldi</p>
-					</div>
-					<!-- User Profile 2 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-contain" src="https://randomuser.me/api/portraits/men/2.jpg" alt="user2" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">user2</p>
-					</div>
-					<!-- Repeat similar structure for other user profiles -->
-					<!-- User Profile 3 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-contain" src="https://randomuser.me/api/portraits/men/3.jpg" alt="user3" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">user3</p>
-					</div>
-					<!-- User Profile 4 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-contain" src="https://randomuser.me/api/portraits/men/4.jpg" alt="user4" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">user4</p>
-					</div>
-					<!-- User Profile 5 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-contain" src="https://randomuser.me/api/portraits/men/5.jpg" alt="user5" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">user5</p>
-					</div>
-					<!-- User Profile 6 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-contain" src="https://randomuser.me/api/portraits/men/6.jpg" alt="user6" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">user6</p>
-					</div>
-					<!-- User Profile 7 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-contain" src="https://randomuser.me/api/portraits/men/7.jpg" alt="user7" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">user7</p>
-					</div>
-					<!-- User Profile 8 -->
-					<div class="text-center flex-shrink-0">
-						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<div class="wrapper h-14 w-14 overflow-hidden rounded-full border-2 border-black bg-white">
-								<img class="h-full w-full object-contain" src="https://randomuser.me/api/portraits/men/8.jpg" alt="user8" />
-							</div>
-						</div>
-						<p class="pt-1 pb-2 text-xs text-white">user8</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	{#each  data.articles as article (article.id)}
-		
-		<!-- Article Section-->
-		<div class="rounded-lg bg-black">
-			<div class="mb-4">
-				<div class="flex flex-row items-center gap-2 text-center">
-					<div class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-						<div class="wrapper h-10 w-10 overflow-hidden rounded-full border-2 border-black bg-white">
-							<img class="h-full w-full object-cover rounded-full" src="Eriseldi.jpg" alt="Eriseldi" />
-						</div>
-					</div>
-					<p class="pt-1 pb-2 text-sm font-semibold text-white">{article.author}</p>
-				</div>
-			</div>
-			<div>
-				<div>
-					<img class="w-full" src={article.image} alt="" />
-				</div>
-			</div>
-	
-			<div class="space-y-1 pt-1 pb-2 text-sm">
-				<div>
-					<p class="cursor-pointer font-semibold text-white">37.103 likes</p>
-				</div>
-				<div>
-					<p class="cursor-pointer text-white">{article.description}</p>
-				</div>
-				<div>
-					<p class="cursor-pointer text-gray-500">View all 400 comments</p>
-				</div>
-			</div>
-			<div class="flex flex-row justify-between space-x-3 py-3">
-				<div class="">
-					<p class="text-sm text-gray-400">Add a comment...</p>
-				</div>
-				<button class="cursor-pointer font-semibold text-blue-400">Post</button>
-			</div>
-		</div>
-		{/each}
-
-		
-	</section>
-	
-</div>
-
+	function showTheComments() {
+		showComments = !showComments;
+	}
+	function countComments(articleId) {
+		return data.comments.filter((comment) => comment.article_id === articleId).length;
+	}
+</script>
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
 	.font-logo {
 		font-family: 'Grand Hotel', cursive;
 	}
+
+	/* Layout adjustment to account for the fixed left sidebar */
+	.layout {
+		display: flex;
+		flex-direction: column;
+		padding-left: 0; /* Default for small screens */
+	}
+
+	@media (min-width: 1024px) { /* Adjust content for large screens */
+		.layout {
+			display: grid;
+			grid-template-columns: 1fr 350px; /* Main content + Sidebar */
+			gap: 2rem;
+			padding-left: 270px; /* Accounts for the fixed sidebar width */
+		}
+	}
+
+	.main-content {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 630px;
+		width: 100%;
+	}
+
+	.sidebar {
+		display: none;
+	}
+
+	@media (min-width: 1280px) {
+		.sidebar {
+			display: block;
+			position: sticky;
+			top: 30px;
+			right: 0;
+			height: fit-content;
+		}
+	}
 </style>
+
+<div class="bg-black min-h-screen layout p-4 lg:p-8">
+	<!-- Main Content Section -->
+	<section class="main-content">
+		{#each data.articles as article}
+		<div class="rounded-lg bg-black mb-6 p-4 border border-zinc-800">
+			<!-- Article Header -->
+			<div class="mb-4 flex flex-row items-center gap-3">
+				<div class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
+					<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-black bg-white">
+						<img class="h-full w-full object-cover" src="Eriseldi.jpg" alt="Eriseldi" />
+					</div>
+				</div>
+				<p class="text-sm font-semibold text-white">{article.author}</p>
+			</div>
+
+			<!-- Article Image -->
+			<div>
+				<img class="w-full rounded-lg object-cover" src={article.image} alt="" />
+			</div>
+
+			<!-- Article Footer -->
+			<div class="space-y-1 pt-4 pb-2 text-sm">
+				<div>
+					<p class="font-semibold text-white">37,103 likes</p>
+				</div>
+				<div>
+					<p class="text-white">
+						<span class="font-semibold">{article.author}</span> {article.description}
+					</p>
+				</div>
+				<div>
+					<button class="text-gray-500 focus:outline-none" onclick={showTheComments}>
+						{#if showComments}
+							Hide comments
+						{:else}
+							View all {countComments(article.id)} comments
+						{/if}
+					</button>
+				</div>
+
+				{#if showComments}
+					{#each data.comments.filter((comment) => comment.article_id === article.id) as comment (comment.id)}
+					<div class="mt-2 flex items-center space-x-2">
+						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
+							<img class="h-6 w-6 rounded-full object-cover" src={article.image} alt={comment.name} loading="lazy"/>
+						</div>
+						<p class="text-sm text-white">
+							<span class="font-semibold">{comment.name}</span> {comment.text}
+						</p>
+					</div>
+					{/each}
+				{/if}
+
+				<form action="?/addComment" method="POST" use:enhance class="pt-3">
+					<input type="hidden" name="article_id" value={article.id}/>
+					<input type="hidden" name="name" value={article.author}/>
+					<div class="flex justify-between">
+						<input 
+							type="text" 
+							name="commentInput" 
+							placeholder="Add a comment..." 
+							class="w-full bg-transparent border-none text-sm text-gray-400 focus:outline-none"
+							required
+						/>
+						<button type="submit" class="font-semibold text-blue-400 hover:text-blue-300">Post</button>
+					</div>
+				</form>
+
+				<div class="pt-2">
+					<a href="api/articles/{article.id}" class="text-xs text-gray-500 hover:text-gray-300">read more</a>
+				</div>
+			</div>
+		</div>
+		{/each}
+	</section>
+
+	<!-- Right Sidebar Section (Only visible on large screens) -->
+	<div class="space-y-3">
+
+	<aside class="sidebar hidden xl:block m-7">
+		<div class="py-3 flex items-center justify-between">
+			<div class=" flex items-center space-x-3">
+				<img 
+					class="w-[60px] h-[60px] rounded-full object-cover" 
+					src="https://avatars.githubusercontent.com/u/26464462?v=4" 
+					alt="Profile"
+					loading="lazy"
+				/>
+				<div>
+					<p class="text-white font-semibold">andrecanuto</p>
+					<p class="text-gray-400 text-sm">André Cabral</p>
+				</div>
+			</div>
+			<button class="text-blue-500 text-sm font-semibold hover:text-blue-400">Switch</button>
+		</div>
+
+		<div class="py-3">
+			<div class="flex justify-between items-center">
+				<span class="text-gray-400 font-semibold">Suggestions for you</span>
+				<button class="text-white text-sm font-semibold hover:text-gray-300">See All</button>
+			</div>
+		</div>
+		<div class="flex items-center justify-between mb-4 ">
+			<div class="flex items-center space-x-3">
+				<img 
+					class="w-8 h-8 rounded-full object-cover" 
+					src="https://randomuser.me/api/portraits/men/1.jpg" 
+					alt="Suggested user"
+					loading="lazy"
+				/>
+				<div>
+					<p class="text-white text-sm">user_1</p>
+					<p class="text-gray-400 text-xs">Followed by user_a + 3</p>
+				</div>
+			</div>
+			<button class="text-blue-500 text-xs font-semibold hover:text-blue-400">Follow</button>
+		</div>
+		
+		<div class="flex items-center justify-between mb-4">
+			<div class="flex items-center space-x-3">
+				<img 
+					class="w-8 h-8 rounded-full object-cover" 
+					src="https://randomuser.me/api/portraits/women/2.jpg" 
+					alt="Suggested user"
+					loading="lazy"
+				/>
+				<div>
+					<p class="text-white text-sm">user_2</p>
+					<p class="text-gray-400 text-xs">Suggested for you</p>
+				</div>
+			</div>
+			<button class="text-blue-500 text-xs font-semibold hover:text-blue-400">Follow</button>
+		</div>
+		
+		<div class="flex items-center justify-between mb-4">
+			<div class="flex items-center space-x-3">
+				<img 
+					class="w-8 h-8 rounded-full object-cover" 
+					src="https://randomuser.me/api/portraits/men/3.jpg" 
+					alt="Suggested user"
+					loading="lazy"
+				/>
+				<div>
+					<p class="text-white text-sm">user_3</p>
+					<p class="text-gray-400 text-xs">Followed by user_a + 3</p>
+				</div>
+			</div>
+			<button class="text-blue-500 text-xs font-semibold hover:text-blue-400">Follow</button>
+		</div>
+		
+		<div class="flex items-center justify-between mb-4">
+			<div class="flex items-center space-x-3">
+				<img 
+					class="w-8 h-8 rounded-full object-cover" 
+					src="https://randomuser.me/api/portraits/women/4.jpg" 
+					alt="Suggested user"
+					loading="lazy"
+				/>
+				<div>
+					<p class="text-white text-sm">user_4</p>
+					<p class="text-gray-400 text-xs">Suggested for you</p>
+				</div>
+			</div>
+			<button class="text-blue-500 text-xs font-semibold hover:text-blue-400">Follow</button>
+		</div>
+		
+		<div class="flex items-center justify-between mb-4">
+			<div class="flex items-center space-x-3">
+				<img 
+					class="w-8 h-8 rounded-full object-cover" 
+					src="https://randomuser.me/api/portraits/men/5.jpg" 
+					alt="Suggested user"
+					loading="lazy"
+				/>
+				<div>
+					<p class="text-white text-sm">user_5</p>
+					<p class="text-gray-400 text-xs">Followed by user_a + 3</p>
+				</div>
+			</div>
+			<button class="text-blue-500 text-xs font-semibold hover:text-blue-400">Follow</button>
+		</div>
+		
+
+		
+	</aside>
+</div>
+</div>
