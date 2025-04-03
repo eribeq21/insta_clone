@@ -3,9 +3,14 @@
 	let { data } = $props();
 
 	let showComments = $state(false);
+	let like = $state("white.png");
 
 	function showTheComments() {
 		showComments = !showComments;
+	}
+	function likeChange(){
+		like = like === "white.png" ? "instagram-heart-png-23855.png" : "white.png"; // Toggle between two states
+
 	}
 	function countComments(articleId) {
 		return data.comments.filter((comment) => comment.article_id === articleId).length;
@@ -22,7 +27,8 @@
 	.layout {
 		display: flex;
 		flex-direction: column;
-		padding-left: 0; /* Default for small screens */
+		padding-left: 0; 
+		padding-right: 0;/* Default for small screens */
 	}
 
 	@media (min-width: 1024px) { /* Adjust content for large screens */
@@ -54,13 +60,16 @@
 			height: fit-content;
 		}
 	}
+	
+
+	
 </style>
 
 <div class="bg-black min-h-screen layout p-4 lg:p-8">
 	<!-- Main Content Section -->
 	<section class="main-content">
 		{#each data.articles as article}
-		<div class="rounded-lg bg-black mb-6 p-4 border border-zinc-800">
+		<div class=" bg-black  p-4 border border-zinc-800 mx-auto max-w-screen-sm">
 			<!-- Article Header -->
 			<div class="mb-4 flex flex-row items-center gap-3">
 				<div class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
@@ -73,14 +82,18 @@
 
 			<!-- Article Image -->
 			<div>
-				<img class="w-full rounded-lg object-cover" src={article.image} alt="" />
+				<img class="w-full h-full rounded-lg object-cover" src={article.image} alt="" />
 			</div>
 
 			<!-- Article Footer -->
 			<div class="space-y-1 pt-4 pb-2 text-sm">
-				<div>
+				<div class="flex items-center space-x-2">
+					<button onclick={likeChange}>
+						<img src={like} alt="Like" class="w-8 h-8 cursor-pointer" />
+					</button>
 					<p class="font-semibold text-white">37,103 likes</p>
 				</div>
+				
 				<div>
 					<p class="text-white">
 						<span class="font-semibold">{article.author}</span> {article.description}
@@ -100,7 +113,7 @@
 					{#each data.comments.filter((comment) => comment.article_id === article.id) as comment (comment.id)}
 					<div class="mt-2 flex items-center space-x-2">
 						<div class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
-							<img class="h-6 w-6 rounded-full object-cover" src={article.image} alt={comment.name} loading="lazy"/>
+							<img class="h-6 w-6 rounded-full object-cover" src={article.image} alt={comment.name} />
 						</div>
 						<p class="text-sm text-white">
 							<span class="font-semibold">{comment.name}</span> {comment.text}
@@ -117,7 +130,7 @@
 							type="text" 
 							name="commentInput" 
 							placeholder="Add a comment..." 
-							class="w-full bg-transparent border-none text-sm text-gray-400 focus:outline-none"
+						  class="w-[80%] bg-transparent p-0  border-none text-sm text-gray-400 focus:outline-none "
 							required
 						/>
 						<button type="submit" class="font-semibold text-blue-400 hover:text-blue-300">Post</button>
@@ -131,7 +144,6 @@
 		</div>
 		{/each}
 	</section>
-
 	<!-- Right Sidebar Section (Only visible on large screens) -->
 	<div class="space-y-3">
 
