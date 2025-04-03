@@ -69,7 +69,7 @@
 	<!-- Main Content Section -->
 	<section class="main-content">
 		{#each data.articles as article}
-		<div class=" bg-black  p-4 border border-zinc-800 mx-auto max-w-screen-sm">
+		<div class="bg-black p-4  mx-auto max-w-screen-sm md:border">
 			<!-- Article Header -->
 			<div class="mb-4 flex flex-row items-center gap-3">
 				<div class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5">
