@@ -35,7 +35,7 @@
 				</a>
 			</li>
 			<li class="flex flex-col items-center">
-				<a href="/create" class="flex flex-col items-center">
+				<a href="/admin/articles_management" class="flex flex-col items-center">
 					<span class="text-xs">Articles</span>
 				</a>
 			</li>
