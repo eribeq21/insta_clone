@@ -1,9 +1,7 @@
-import { error } from '@sveltejs/kit';
+import { createConnection } from '$lib/db/mysql';
+import { redirect, error } from '@sveltejs/kit';
 import { put } from '@vercel/blob';
 import { BLOB_READ_WRITE_TOKEN } from '$env/static/private';
-import { createConnection } from '$lib/db/mysql';
-
-
 export async function load({ locals, fetch }) {
 	if (!locals.user) {
 		redirect(302, '/login');
