@@ -57,22 +57,39 @@ export const actions = {
 			};
 		}
 	}, 
-	upVote: async ({ request }) => {
-		const formData = await request.formData();
-        const input  = await formData.get('articleId');
-		const connection = await createConnection();
+		toggleLike: async ({ request, locals }) => {
+		  const formData = await request.formData();
+		  const articleId =  formData.get("articleId");
+		  const userId = locals.user.id;
+		  const connection = await createConnection();
 
-		try{
-			await connection.execute(
-				'UPDATE articles SET votes = votes + 1 WHERE id = ?', [input]
-			)
-		} catch (error) {
-			console.error('Database error:', error);
-			return {
-				success: false,
-				message: 'Failed to like. Please try again.'
-			};
-
+	  
+		  try {
+			await connection.execute(`
+			  INSERT INTO user_likes (user_id, article_id) VALUES (?, ?)
+			`, [userId, articleId]);
+	
+			await connection.execute(`
+			  UPDATE articles SET votes = votes + 1 WHERE id = ?
+			`, [articleId]);
+	  
+		  } catch (error) {
+			if (error) {
+			  
+			  await connection.execute(`
+				DELETE FROM user_likes WHERE user_id = ? AND article_id = ?
+			  `, [userId, articleId]);
+	  
+			  await connection.execute(`
+				UPDATE articles SET votes = votes - 1 WHERE id = ?
+			  `, [articleId]);
+			} else {
+			  throw error; 
+			}
+		  }
+	  
+		  return { success: true };
 		}
-	}
+
+	  
 };

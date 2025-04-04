@@ -2,10 +2,13 @@
 	import { enhance } from '$app/forms';
 	let { data } = $props();
 	let showComments = $state(false);
-	let like = $state("white.png");
 
 	function showTheComments() {
 		showComments = !showComments;
+	}
+	let likeStatus = $state({});
+	function toggleLike(articleId) {
+		likeStatus[articleId] = likeStatus[articleId] === "instagram-heart-png-23855.png" ? "white.png" : "instagram-heart-png-23855.png";
 	}
 	
 	function countComments(articleId) {
@@ -88,10 +91,10 @@
 			<!-- Article Footer -->
 			<div class="space-y-1 pt-4 pb-2 text-sm">
 				<div class="flex items-center space-x-2">
-					<form action="?/upVote" method="POST" use:enhance>
+					<form action="?/toggleLike" method="POST" use:enhance>
 					<input type="hidden" name="articleId" value={article.id}>
-					<button type="submit"  >
-						<img src={like} alt="Like" class="w-8 h-8 cursor-pointer" />
+					<button type="submit" onclick={() => toggleLike(article.id)}>
+						<img src={likeStatus[article.id] || "white.png"} alt="Like" class="w-8 h-8 cursor-pointer" />
 					</button>
 				    </form>
 					<p class="font-semibold text-white"> {countLikes(article.id)} likes</p>
