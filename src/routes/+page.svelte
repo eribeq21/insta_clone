@@ -1,28 +1,25 @@
 <script>
 	import { enhance } from '$app/forms';
 	let { data } = $props();
-
 	let showComments = $state(false);
 	let like = $state("white.png");
 
 	function showTheComments() {
 		showComments = !showComments;
 	}
-	function likeChange(){
-		like = like === "white.png" ? "instagram-heart-png-23855.png" : "white.png"; // Toggle between two states
-
-	}
+	
 	function countComments(articleId) {
 		return data.comments.filter((comment) => comment.article_id === articleId).length;
 	}
-</script>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
-	.font-logo {
-		font-family: 'Grand Hotel', cursive;
+	function countLikes(articleId) {
+		const articleLikes = data.likes.find((like) => like.id === articleId);
+		return articleLikes ? articleLikes.votes : 0;
 	}
 
+</script>
+<style>
+	
 	/* Layout adjustment to account for the fixed left sidebar */
 	.layout {
 		display: flex;
@@ -85,15 +82,21 @@
 				<img class="w-full h-full rounded-lg object-cover" src={article.image} alt="" />
 			</div>
 
+			
+				
+			
 			<!-- Article Footer -->
 			<div class="space-y-1 pt-4 pb-2 text-sm">
 				<div class="flex items-center space-x-2">
-					<button onclick={likeChange}>
+					<form action="?/upVote" method="POST" use:enhance>
+					<input type="hidden" name="articleId" value={article.id}>
+					<button type="submit"  >
 						<img src={like} alt="Like" class="w-8 h-8 cursor-pointer" />
 					</button>
-					<p class="font-semibold text-white">37,103 likes</p>
+				    </form>
+					<p class="font-semibold text-white"> {countLikes(article.id)} likes</p>
 				</div>
-				
+			
 				<div>
 					<p class="text-white">
 						<span class="font-semibold">{article.author}</span> {article.description}

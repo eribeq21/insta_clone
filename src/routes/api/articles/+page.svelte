@@ -213,9 +213,7 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
-	.font-logo {
-		font-family: 'Grand Hotel', cursive;
-	}
+	
 
 	/* Layout adjustment to account for the fixed left sidebar */
 	.layout {
