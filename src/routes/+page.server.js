@@ -9,16 +9,12 @@ export async function load({ locals, fetch }) {
 	const res = await fetch('/api/articles');
 	const data = await res.json();
 	let articles = data.articles;
-	
 
 	const connection = await createConnection();
 	const [rows] = await connection.execute(
 		'SELECT c.id, c.text, c.name, c.article_id FROM comments c;'
 	);
-	const [ rowss ] = await connection.execute(
-		'Select a.votes , a.id from articles a;'
-	);
-	
+	const [rowss] = await connection.execute('Select a.votes , a.id from articles a;');
 
 	return { articles, comments: rows, likes: rowss }; // Pass ONLY articles
 }
@@ -56,40 +52,47 @@ export const actions = {
 				message: 'Failed to add comment. Please try again.'
 			};
 		}
-	}, 
-		toggleLike: async ({ request, locals }) => {
-		  const formData = await request.formData();
-		  const articleId =  formData.get("articleId");
-		  const userId = locals.user.id;
-		  const connection = await createConnection();
+	},
+	toggleLike: async ({ request, locals }) => {
+		const formData = await request.formData();
+		const articleId = formData.get('articleId');
+		const userId = locals.user.id;
+		const connection = await createConnection();
 
-	  
-		  try {
-			await connection.execute(`
+		try {
+			await connection.execute(
+				`
 			  INSERT INTO user_likes (user_id, article_id) VALUES (?, ?)
-			`, [userId, articleId]);
-	
-			await connection.execute(`
+			`,
+				[userId, articleId]
+			);
+
+			await connection.execute(
+				`
 			  UPDATE articles SET votes = votes + 1 WHERE id = ?
-			`, [articleId]);
-	  
-		  } catch (error) {
+			`,
+				[articleId]
+			);
+		} catch (error) {
 			if (error) {
-			  
-			  await connection.execute(`
+				await connection.execute(
+					`
 				DELETE FROM user_likes WHERE user_id = ? AND article_id = ?
-			  `, [userId, articleId]);
-	  
-			  await connection.execute(`
+			  `,
+					[userId, articleId]
+				);
+
+				await connection.execute(
+					`
 				UPDATE articles SET votes = votes - 1 WHERE id = ?
-			  `, [articleId]);
+			  `,
+					[articleId]
+				);
 			} else {
-			  throw error; 
+				throw error;
 			}
-		  }
-	  
-		  return { success: true };
 		}
 
-	  
+		return { success: true };
+	}
 };

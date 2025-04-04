@@ -3,6 +3,25 @@ import { put } from '@vercel/blob';
 import { BLOB_READ_WRITE_TOKEN } from '$env/static/private';
 import { createConnection } from '$lib/db/mysql';
 
+import { createConnection } from '$lib/db/mysql';
+import { redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
+
+export async function load({ locals, fetch }) {
+	if (!locals.user) {
+		redirect(302, '/login');
+	}
+
+	const connection = await createConnection();
+	const [rows] = await connection.execute(
+		'SELECT * FROM users;'
+	);
+
+	// Pass user to the frontend
+	return { users: rows, user: locals.user };
+}
+
+
 export const actions = {
 	upload: async ({ request }) => {
 		const formData = await request.formData();

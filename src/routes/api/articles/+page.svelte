@@ -213,8 +213,6 @@
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
-	
-
 	/* Layout adjustment to account for the fixed left sidebar */
 	.layout {
 		display: flex;
