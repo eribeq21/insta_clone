@@ -11,10 +11,16 @@
 	}
 	let likeStatus = $state({});
 	function toggleLike(articleId) {
-		likeStatus[articleId] =
-			likeStatus[articleId] === 'instagram-heart-png-23855.png'
-				? 'white.png'
-				: 'instagram-heart-png-23855.png';
+		const current = isLiked(articleId);
+		likeStatus[articleId] = !current;
+	}
+	function isLiked(articleId) {
+		// If user has toggled it manually
+		if (likeStatus[articleId] !== undefined) {
+			return likeStatus[articleId];
+		}
+		// Otherwise check server info
+		return data.userLikes.includes(articleId);
 	}
 
 	function countComments(articleId) {
@@ -56,10 +62,10 @@
 							<input type="hidden" name="articleId" value={article.id} />
 							<button type="submit" onclick={() => toggleLike(article.id)}>
 								<img
-									src={likeStatus[article.id] || 'white.png'}
-									alt="Like"
-									class="h-8 w-8 cursor-pointer"
-								/>
+			src={isLiked(article.id) ? 'instagram-heart-png-23855.png' : 'white.png'}
+			alt="Like"
+			class="h-8 w-8 cursor-pointer"
+		/>
 							</button>
 						</form>
 						<p class="font-semibold text-white">{countLikes(article.id)} likes</p>

@@ -71,27 +71,7 @@
 						<p class="ml-4 font-sans text-[16px]">Search</p>
 					</a>
 				</li>
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
-				>
-					<a href="/explore" class="flex pl-3">
-						<p class="ml-4 font-sans text-[16px]">Explore</p>
-					</a>
-				</li>
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
-				>
-					<a href="/reels" class="flex pl-3">
-						<p class="ml-4 font-sans text-[16px]">Reels</p>
-					</a>
-				</li>
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
-				>
-					<a href="/notifications" class="flex pl-3">
-						<p class="ml-4 font-sans text-[16px]">Notifications</p>
-					</a>
-				</li>
+				
 				<li
 					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
 				>

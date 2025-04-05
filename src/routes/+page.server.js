@@ -16,11 +16,19 @@ export async function load({ locals, fetch }) {
 	);
 	const [rowss] = await connection.execute('Select a.votes , a.id from articles a;');
 
+	const [userLikesRows] = await connection.execute(
+		'SELECT article_id FROM user_likes WHERE user_id = ?',
+		[locals.user.id]
+	);
+	
+	const likedArticleIds = userLikesRows.map((row) => row.article_id);
 
-	return { articles, comments: rows, likes: rowss ,  user: locals.user}; // Pass ONLY articles
+
+	return { articles, comments: rows, likes: rowss ,  user: locals.user, userLikes: likedArticleIds}; // Pass ONLY articles
 }
 
 export const actions = {
+	
 	addComment: async ({ request }) => {
 		const formData = await request.formData();
 		const input = formData.get('commentInput');
@@ -60,6 +68,7 @@ export const actions = {
 		const userId = locals.user.id;
 		const connection = await createConnection();
 
+	 
 		try {
 			await connection.execute(
 				`
@@ -74,8 +83,9 @@ export const actions = {
 			`,
 				[articleId]
 			);
-		} catch (error) {
-			if (error) {
+		} catch (err) {
+			if (err.code === 'ER_DUP_ENTRY') {
+				console.log(err.code)
 				await connection.execute(
 					`
 				DELETE FROM user_likes WHERE user_id = ? AND article_id = ?
@@ -96,4 +106,5 @@ export const actions = {
 
 		return { success: true };
 	}
+
 };
