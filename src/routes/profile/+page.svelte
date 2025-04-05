@@ -12,7 +12,7 @@
 	<div class="max-w-2xl mx-auto bg-black rounded-lg shadow-md">
 		<div class="px-3 py-2">
 			<div class="flex flex-col gap-1 text-center">
-				<img class="mx-auto w-24 h-24 rounded-full border border-gray-400 shadow-lg object-cover" src={profile} alt="">
+				<a href="/profile/new_profile-picture"><img class="mx-auto w-24 h-24 rounded-full border border-gray-400 shadow-lg object-cover" src={profile} alt=""></a>
 
 				<p class="font-serif font-semibold text-xl">{user.username}</p>
 				<span class="text-sm text-gray-400">New York, NY - Los Angeles, CA</span>

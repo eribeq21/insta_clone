@@ -20,21 +20,6 @@
 				</a>
 			</li>
 			<li class="flex flex-col items-center">
-				<a href="/explore" class="flex flex-col items-center">
-					<span class="text-xs">Explore</span>
-				</a>
-			</li>
-			<li class="flex flex-col items-center">
-				<a href="/reels" class="flex flex-col items-center">
-					<span class="text-xs">Reels</span>
-				</a>
-			</li>
-			<li class="flex flex-col items-center">
-				<a href="/notifications" class="flex flex-col items-center">
-					<span class="text-xs">Notifications</span>
-				</a>
-			</li>
-			<li class="flex flex-col items-center">
 				<a href="/admin/articles_management" class="flex flex-col items-center">
 					<span class="text-xs">Articles</span>
 				</a>
