@@ -16,7 +16,8 @@ export async function load({ locals, fetch }) {
 	);
 	const [rowss] = await connection.execute('Select a.votes , a.id from articles a;');
 
-	return { articles, comments: rows, likes: rowss }; // Pass ONLY articles
+
+	return { articles, comments: rows, likes: rowss ,  user: locals.user}; // Pass ONLY articles
 }
 
 export const actions = {

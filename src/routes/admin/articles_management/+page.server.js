@@ -7,10 +7,16 @@ export async function load({ locals, fetch }) {
 	}
 	const res = await fetch('/api/articles');
 	const data = await res.json();
+	let articles;
 
-	let articles = data.articles;
+    if(locals.user.role !== 'admin'){
+	  articles = data.articles.filter(article => article.author === locals.user.username);
+	}else{
+      articles = data.articles;
+	}
 
-	return { articles };
+
+	return { articles , user: locals.user};
 }
 
 export const actions = {

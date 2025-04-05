@@ -3,7 +3,19 @@ import { createConnection } from '$lib/db/mysql';
 export async function GET() {
 	try {
 		const connection = await createConnection();
-		const [rows] = await connection.execute('SELECT * FROM articles');
+		const [rows] = await connection.execute(`
+			SELECT 
+				a.id,
+				a.image,
+				a.description,
+				a.votes,
+				a.author,
+				u.profile_picture
+			FROM articles a
+			JOIN users u ON a.author = u.username
+			ORDER BY a.id DESC
+		`
+		);
 
 		return new Response(JSON.stringify({ articles: rows }), {
 			status: 200,

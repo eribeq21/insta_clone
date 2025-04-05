@@ -1,7 +1,10 @@
 <script>
 	import { enhance } from '$app/forms';
 	let { data } = $props();
+	let user = data.user;
 	let showComments = $state(false);
+
+	
 
 	function showTheComments() {
 		showComments = !showComments;
@@ -33,9 +36,9 @@
 				<div class="mb-4 flex flex-row items-center gap-3">
 					<div
 						class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
-					>
+					>  
 						<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-black bg-white">
-							<img class="h-full w-full object-cover" src={article.image} alt="Eriseldi" />
+							<img class="h-full w-full object-cover" src={article.profile_picture} alt={article.author} />
 						</div>
 					</div>
 					<p class="text-sm font-semibold text-white">{article.author}</p>
@@ -100,7 +103,7 @@
 
 					<form action="?/addComment" method="POST" use:enhance class="pt-3">
 						<input type="hidden" name="article_id" value={article.id} />
-						<input type="hidden" name="name" value={article.author} />
+						<input type="hidden" name="name" value={user.username} />
 						<div class="flex justify-between">
 							<input
 								type="text"

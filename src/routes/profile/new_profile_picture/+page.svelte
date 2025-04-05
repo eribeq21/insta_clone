@@ -25,32 +25,18 @@
 					<span class="font-medium text-gray-300">Choose an Image:</span>
 					<input
 						type="file"
-						name="image"
+						name="profile_picture"
 						class="mt-2 block w-full cursor-pointer rounded-lg border border-gray-600 bg-black px-4 py-2 text-gray-300 shadow-sm transition-all file:mr-4 file:border-0 file:bg-gray-600 file:px-4 file:py-2 file:text-white file:hover:bg-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
 					/>
 				</label>
 
 				<!-- Description Input -->
-				<label class="block">
-					<span class="font-medium text-gray-300">Description:</span>
-					<input
-						type="text"
-						name="description"
-						placeholder="Write a short description..."
-						class="mt-2 block w-full rounded-lg border border-gray-600 bg-black px-4 py-2 text-white placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-					/>
-				</label>
-
-				<!-- Author Input -->
-				<label class="block">
 					<input
 						type="hidden"
-						value={user.username}
-						name="author"
-						placeholder="Your name..."
-						class="mt-2 block w-full rounded-lg border border-gray-600 bg-black px-4 py-2 text-white placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+						name="user_id"
+                        value={user.id}
 					/>
-				</label>
+
 
 				<!-- Submit Button -->
 				<button
@@ -64,7 +50,7 @@
 			<!-- Uploaded Image Preview -->
 			{#if form}
 				<div class="mt-6 flex flex-col items-center">
-					<p class="font-medium text-green-400">Post successfully created</p>
+					<p class="font-medium text-green-400">Profile Picture successfully created</p>
 				</div>
 			{/if}
 		</div>
