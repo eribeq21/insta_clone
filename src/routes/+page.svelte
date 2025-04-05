@@ -89,7 +89,7 @@
 								>
 									<img
 										class="h-6 w-6 rounded-full object-cover"
-										src={article.image}
+										src={article.profile_picture}
 										alt={comment.name}
 									/>
 								</div>
