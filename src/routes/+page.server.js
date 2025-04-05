@@ -20,11 +20,12 @@ export async function load({ locals, fetch }) {
 		'SELECT article_id FROM user_likes WHERE user_id = ?',
 		[locals.user.id]
 	);
-	
-	const likedArticleIds = userLikesRows.map((row) => row.article_id);
+
+	const userLikes = userLikesRows.map(row => row.article_id);
 
 
-	return { articles, comments: rows, likes: rowss ,  user: locals.user, userLikes: likedArticleIds}; // Pass ONLY articles
+
+	return { articles, comments: rows, likes: rowss ,  user: locals.user, userLikes}; // Pass ONLY articles
 }
 
 export const actions = {
