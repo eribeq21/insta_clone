@@ -16,6 +16,7 @@
 						class="mx-auto h-24 w-24 rounded-full border border-gray-400 object-cover shadow-lg"
 						src={profile}
 						alt=""
+                        loading="lazy"
 					/></a
 				>
 
@@ -92,11 +93,12 @@
 			<div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
 				<!-- Beispiel-Post -->
 				{#each articles as article (article.id)}
-					<img
+					<a href="api/articles/{article.id}"><img
 						src={article.image}
 						alt=""
-						class="block h-40 w-full rounded-lg bg-gray-700 object-cover"
-					/>
+						class="block h-40 w-full rounded-lg bg-gray-700 object-cover" 
+                        loading="lazy"
+					/></a>
 					<!-- Füge hier dynamisch weitere Posts ein -->
 				{/each}
 			</div>

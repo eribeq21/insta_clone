@@ -48,6 +48,7 @@
 								class="h-full w-full object-cover"
 								src={article.profile_picture}
 								alt={article.author}
+								loading="lazy"
 							/>
 						</div>
 					</div>
@@ -69,6 +70,7 @@
 									src={isLiked(article.id) ? 'instagram-heart-png-23855.png' : 'white.png'}
 									alt="Like"
 									class="h-8 w-8 cursor-pointer"
+									loading="lazy"
 								/>
 							</button>
 						</form>
@@ -104,6 +106,7 @@
 										class="h-6 w-6 rounded-full object-cover"
 										src={article.profile_picture}
 										alt={comment.name}
+										loading="lazy"
 									/>
 								</div>
 								<p class="text-sm text-white">

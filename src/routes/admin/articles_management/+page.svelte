@@ -27,6 +27,7 @@
 							src={article.image}
 							alt=""
 							class="h-24 w-24 rounded-lg border border-zinc-700 object-cover shadow-md"
+							loading="lazy"
 						/>
 					</div>
 
