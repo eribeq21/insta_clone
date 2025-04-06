@@ -64,13 +64,40 @@
 						<p class="ml-4 font-sans text-[16px]">Articles</p>
 					</a>
 				</li>
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
+				<details class="group">
+					<summary
+						class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold pl-3 list-none"
+					>
+						<a href="/profile"><p class="ml-4 font-sans text-[16px]">Profile</p></a>
+					</summary>
+			
+					<ul class="absolute right-0 mt-2 w-48 rounded-lg bg-white shadow-lg z-50">
+
+						<form action="/logout?/logout" method="POST" class="mt-4">
+							<li
+							class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-800"
+						>
+							<button type="submit">Log Out</button>
+						</li>
+							
+						</form>
+						
+						<a href="/profile/new_profile_picture"><li
+							class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-800">
+							Change Profile Picture
+						</li></a>
+						<form action="/logout?/deleteAccount" method="POST" class="mt-4">
+							<li
+							class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-800"
+						>
+						<button type="submit" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
+					>Delete Account</button
 				>
-					<a href="/profile" class="flex pl-3">
-						<p class="ml-4 font-sans text-[16px]">Profile</p>
-					</a>
-				</li>
+						</li>
+							
+						</form>
+					</ul>
+				</details>
 			</ul>
 		</nav>
 	</section>

@@ -9,11 +9,13 @@
 	function showTheComments() {
 		showComments = !showComments;
 	}
+
 	let likeStatus = $state({});
 	function toggleLike(articleId) {
 		const current = isLiked(articleId);
 		likeStatus[articleId] = !current;
 	}
+	
 	function isLiked(articleId) {
 		// If user has toggled it manually
 		if (likeStatus[articleId] !== undefined) {
@@ -22,6 +24,7 @@
 		// Otherwise check server info
 		return data.userLikes.includes(articleId);
 	}
+
 
 	function countComments(articleId) {
 		return data.comments.filter((comment) => comment.article_id === articleId).length;
