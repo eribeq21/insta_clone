@@ -8,14 +8,11 @@ export async function load({ locals, fetch }) {
 	}
 
 	const connection = await createConnection();
-	const [rows] = await connection.execute(
-		'SELECT * FROM users;'
-	);
+	const [rows] = await connection.execute('SELECT * FROM users;');
 
 	// Pass user to the frontend
 	return { users: rows, user: locals.user };
 }
-
 
 export const actions = {
 	upload: async ({ request }) => {

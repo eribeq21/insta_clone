@@ -14,8 +14,7 @@ export async function GET() {
 			FROM articles a
 			JOIN users u ON a.author = u.username
 			ORDER BY a.id DESC
-		`
-		);
+		`);
 
 		return new Response(JSON.stringify({ articles: rows }), {
 			status: 200,

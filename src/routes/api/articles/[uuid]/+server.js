@@ -4,7 +4,19 @@ export async function GET({ params }) {
 		const { uuid } = params;
 
 		const connection = await createConnection();
-		const [rows] = await connection.execute('SELECT * FROM articles WHERE id = ?', [uuid]);
+		const [rows] = await connection.execute(
+			`	SELECT 
+				a.id,
+				a.image,
+				a.description,
+				a.votes,
+				a.author,
+				u.profile_picture
+			FROM articles a
+			JOIN users u ON a.author = u.username
+			where a.id = ? `,
+			[uuid]
+		);
 
 		if (rows.length === 0) {
 			return new Response(JSON.stringify({ error: 'Article not found' }), {

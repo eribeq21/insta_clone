@@ -4,8 +4,6 @@
 	let user = data.user;
 	let showComments = $state(false);
 
-	
-
 	function showTheComments() {
 		showComments = !showComments;
 	}
@@ -15,7 +13,7 @@
 		const current = isLiked(articleId);
 		likeStatus[articleId] = !current;
 	}
-	
+
 	function isLiked(articleId) {
 		// If user has toggled it manually
 		if (likeStatus[articleId] !== undefined) {
@@ -24,7 +22,6 @@
 		// Otherwise check server info
 		return data.userLikes.includes(articleId);
 	}
-
 
 	function countComments(articleId) {
 		return data.comments.filter((comment) => comment.article_id === articleId).length;
@@ -45,9 +42,13 @@
 				<div class="mb-4 flex flex-row items-center gap-3">
 					<div
 						class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
-					>  
+					>
 						<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-black bg-white">
-							<img class="h-full w-full object-cover" src={article.profile_picture} alt={article.author} />
+							<img
+								class="h-full w-full object-cover"
+								src={article.profile_picture}
+								alt={article.author}
+							/>
 						</div>
 					</div>
 					<p class="text-sm font-semibold text-white">{article.author}</p>
@@ -65,10 +66,10 @@
 							<input type="hidden" name="articleId" value={article.id} />
 							<button type="submit" onclick={() => toggleLike(article.id)}>
 								<img
-			src={isLiked(article.id) ? 'instagram-heart-png-23855.png' : 'white.png'}
-			alt="Like"
-			class="h-8 w-8 cursor-pointer"
-		/>
+									src={isLiked(article.id) ? 'instagram-heart-png-23855.png' : 'white.png'}
+									alt="Like"
+									class="h-8 w-8 cursor-pointer"
+								/>
 							</button>
 						</form>
 						<p class="font-semibold text-white">{countLikes(article.id)} likes</p>
@@ -81,7 +82,10 @@
 						</p>
 					</div>
 					<div>
-						<button class="text-gray-500 focus:outline-none cursor-pointer" onclick={showTheComments}>
+						<button
+							class="cursor-pointer text-gray-500 focus:outline-none"
+							onclick={showTheComments}
+						>
 							{#if showComments}
 								Hide comments
 							{:else}

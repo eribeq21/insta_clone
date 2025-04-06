@@ -1,14 +1,35 @@
 <script>
 	import { enhance } from '$app/forms';
 	let { data } = $props();
-
+	let user = data.user;
 	let showComments = $state(false);
 
 	function showTheComments() {
 		showComments = !showComments;
 	}
+
+	let likeStatus = $state({});
+	function toggleLike(articleId) {
+		const current = isLiked(articleId);
+		likeStatus[articleId] = !current;
+	}
+
+	function isLiked(articleId) {
+		// If user has toggled it manually
+		if (likeStatus[articleId] !== undefined) {
+			return likeStatus[articleId];
+		}
+		// Otherwise check server info
+		return data.userLikes.includes(articleId);
+	}
+
 	function countComments(articleId) {
 		return data.comments.filter((comment) => comment.article_id === articleId).length;
+	}
+
+	function countLikes(articleId) {
+		const articleLikes = data.likes.find((like) => like.id === articleId);
+		return articleLikes ? articleLikes.votes : 0;
 	}
 </script>
 
@@ -16,14 +37,18 @@
 	<!-- Main Content Section -->
 	<section class="main-content">
 		{#each data.articles as article}
-			<div class="mb-0.5 rounded-lg border border-zinc-800 bg-black p-4">
+			<div class="mx-auto max-w-screen-sm bg-black p-4 md:border">
 				<!-- Article Header -->
 				<div class="mb-4 flex flex-row items-center gap-3">
 					<div
 						class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
 					>
 						<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-black bg-white">
-							<img class="h-full w-full object-cover" src={article.image} alt="Eriseldi" />
+							<img
+								class="h-full w-full object-cover"
+								src={article.profile_picture}
+								alt={article.author}
+							/>
 						</div>
 					</div>
 					<p class="text-sm font-semibold text-white">{article.author}</p>
@@ -36,9 +61,20 @@
 
 				<!-- Article Footer -->
 				<div class="space-y-1 pt-4 pb-2 text-sm">
-					<div>
-						<p class="font-semibold text-white">37,103 likes</p>
+					<div class="flex items-center space-x-2">
+						<form action="?/toggleLike" method="POST" use:enhance>
+							<input type="hidden" name="articleId" value={article.id} />
+							<button type="submit" onclick={() => toggleLike(article.id)}>
+								<img
+									src={isLiked(article.id) ? 'instagram-heart-png-23855.png' : 'white.png'}
+									alt="Like"
+									class="h-8 w-8 cursor-pointer"
+								/>
+							</button>
+						</form>
+						<p class="font-semibold text-white">{countLikes(article.id)} likes</p>
 					</div>
+
 					<div>
 						<p class="text-white">
 							<span class="font-semibold">{article.author}</span>
@@ -46,7 +82,10 @@
 						</p>
 					</div>
 					<div>
-						<button class="text-gray-500 focus:outline-none" onclick={showTheComments}>
+						<button
+							class="cursor-pointer text-gray-500 focus:outline-none"
+							onclick={showTheComments}
+						>
 							{#if showComments}
 								Hide comments
 							{:else}
@@ -63,7 +102,7 @@
 								>
 									<img
 										class="h-6 w-6 rounded-full object-cover"
-										src={article.image}
+										src={article.profile_picture}
 										alt={comment.name}
 									/>
 								</div>
@@ -77,7 +116,7 @@
 
 					<form action="?/addComment" method="POST" use:enhance class="pt-3">
 						<input type="hidden" name="article_id" value={article.id} />
-						<input type="hidden" name="name" value={article.author} />
+						<input type="hidden" name="name" value={user.username} />
 						<div class="flex justify-between">
 							<input
 								type="text"
@@ -93,7 +132,7 @@
 					</form>
 
 					<div class="pt-2">
-						<a href="api/articles/{article.id}" class="text-xs text-gray-500 hover:text-gray-300"
+						<a href="/articles/{article.id}" class="text-xs text-gray-500 hover:text-gray-300"
 							>read more</a
 						>
 					</div>
@@ -101,7 +140,6 @@
 			</div>
 		{/each}
 	</section>
-
 	<!-- Right Sidebar Section (Only visible on large screens) -->
 	<div class="space-y-3">
 		<aside class="sidebar m-7 hidden xl:block">
@@ -211,13 +249,12 @@
 </div>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
-
 	/* Layout adjustment to account for the fixed left sidebar */
 	.layout {
 		display: flex;
 		flex-direction: column;
-		padding-left: 0; /* Default for small screens */
+		padding-left: 0;
+		padding-right: 0; /* Default for small screens */
 	}
 
 	@media (min-width: 1024px) {

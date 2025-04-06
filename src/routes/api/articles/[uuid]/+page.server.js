@@ -1,20 +1,25 @@
-import { createConnection } from '$lib/db/mysql';
 import { redirect } from '@sveltejs/kit';
-import { error } from '@sveltejs/kit';
+import { createConnection } from '$lib/db/mysql';
 
-export async function load({ locals, fetch }) {
+export async function load({ params, fetch, locals }) {
 	if (!locals.user) {
 		redirect(302, '/login');
 	}
-	const res = await fetch('/api/articles');
-	const data = await res.json();
-	let articles = data.articles;
+
+	const uuid = params.uuid;
+	const res = await fetch(`/api/articles/${uuid}`);
+	const article = await res.json();
 
 	const connection = await createConnection();
-	const [rows] = await connection.execute(
-		'SELECT c.id, c.text, c.name, c.article_id FROM comments c;'
+
+	const [comments] = await connection.execute(
+		'SELECT c.id, c.text, c.name, c.article_id FROM comments c WHERE article_id = ?;',
+		[uuid]
 	);
-	const [rowss] = await connection.execute('Select a.votes , a.id from articles a;');
+
+	const [likes] = await connection.execute('SELECT a.votes, a.id FROM articles a WHERE id = ?;', [
+		uuid
+	]);
 
 	const [userLikesRows] = await connection.execute(
 		'SELECT article_id FROM user_likes WHERE user_id = ?',
@@ -23,7 +28,13 @@ export async function load({ locals, fetch }) {
 
 	const userLikes = userLikesRows.map((row) => row.article_id);
 
-	return { articles, comments: rows, likes: rowss, user: locals.user, userLikes }; // Pass ONLY articles
+	return {
+		article,
+		comments,
+		likes,
+		user: locals.user,
+		userLikes
+	};
 }
 
 export const actions = {

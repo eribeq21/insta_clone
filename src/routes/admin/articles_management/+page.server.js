@@ -9,14 +9,13 @@ export async function load({ locals, fetch }) {
 	const data = await res.json();
 	let articles;
 
-    if(locals.user.role !== 'admin'){
-	  articles = data.articles.filter(article => article.author === locals.user.username);
-	}else{
-      articles = data.articles;
+	if (locals.user.role !== 'admin') {
+		articles = data.articles.filter((article) => article.author === locals.user.username);
+	} else {
+		articles = data.articles;
 	}
 
-
-	return { articles , user: locals.user};
+	return { articles, user: locals.user };
 }
 
 export const actions = {
