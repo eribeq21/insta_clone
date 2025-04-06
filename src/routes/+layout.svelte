@@ -24,10 +24,41 @@
 					<span class="text-xs">Articles</span>
 				</a>
 			</li>
-			<li class="flex flex-col items-center">
-				<a href="/profile" class="flex flex-col items-center">
-					<span class="text-xs">Profile</span>
-				</a>
+			<!-- Profile with dropdown -->
+			<li class="relative flex flex-col items-center">
+				<details class="group">
+					<summary class="flex flex-col items-center cursor-pointer list-none">
+						<a href="/profile" class="text-xs">Profile</a>
+						<span class="text-[10px]">▼</span>
+					</summary>
+
+					<ul
+						class="absolute bottom-10 right-0 mb-2 w-52 rounded-lg bg-white text-black shadow-lg z-50 text-sm"
+					>
+						<form action="/logout?/logout" method="POST">
+							<li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+								<button type="submit" class="w-full text-left">Log Out</button>
+							</li>
+						</form>
+
+						<a href="/profile/new_profile_picture">
+							<li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+								Change Profile Picture
+							</li>
+						</a>
+
+						<form action="/logout?/deleteAccount" method="POST">
+							<li class="px-4 py-2">
+								<button
+									type="submit"
+									class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
+								>
+									Delete Account
+								</button>
+							</li>
+						</form>
+					</ul>
+				</details>
 			</li>
 		</ul>
 	</nav>
