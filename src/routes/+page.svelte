@@ -37,6 +37,16 @@
 		const articleLikes = data.likes.find((like) => like.id === articleId);
 		return articleLikes ? articleLikes.votes : 0;
 	}
+
+	function getAuthorProfileLink(authorName) {
+    const user = data.users.find((user) => user.username === authorName);
+    if (user) {
+        return `api/profile/${user.username}`;
+    } else {
+        return '#';
+    }
+}
+
 </script>
 
 <div class="layout min-h-screen bg-black p-4 lg:p-8">
@@ -58,7 +68,9 @@
 							/>
 						</div>
 					</div>
-					<a href="/profile"><p class="text-sm font-semibold text-white">{article.author}</p></a>
+					<a href={getAuthorProfileLink(article.author)}>
+                        <p class="text-sm font-semibold text-white">{article.author}</p>
+                    </a>
 				</div>
 
 				<!-- Article Image -->

@@ -22,8 +22,10 @@ export async function load({ locals, fetch }) {
 	);
 
 	const userLikes = userLikesRows.map((row) => row.article_id);
+	const [users] = await connection.execute('SELECT id, username FROM users;');
 
-	return { articles, comments: rows, likes: rowss, user: locals.user, userLikes }; // Pass ONLY articles
+
+	return { articles, comments: rows, likes: rowss, user: locals.user, userLikes, users }; // Pass ONLY articles
 }
 
 export const actions = {
