@@ -163,22 +163,10 @@
 	</section>
 	<!-- Right Sidebar Section (Only visible on large screens) -->
 	<div class="space-y-3">
+
+			
 		<aside class="sidebar m-7 hidden xl:block">
-			<div class="flex items-center justify-between py-3">
-				<div class=" flex items-center space-x-3">
-					<img
-						class="h-[60px] w-[60px] rounded-full object-cover"
-						src="https://avatars.githubusercontent.com/u/26464462?v=4"
-						alt="Profile"
-						loading="lazy"
-					/>
-					<div>
-						<p class="font-semibold text-white">andrecanuto</p>
-						<p class="text-sm text-gray-400">André Cabral</p>
-					</div>
-				</div>
-				<button class="text-sm font-semibold text-blue-500 hover:text-blue-400">Switch</button>
-			</div>
+			
 
 			<div class="py-3">
 				<div class="flex items-center justify-between">
@@ -186,85 +174,28 @@
 					<button class="text-sm font-semibold text-white hover:text-gray-300">See All</button>
 				</div>
 			</div>
+			{#each  data.users as  user }
+				
+
 			<div class="mb-4 flex items-center justify-between">
 				<div class="flex items-center space-x-3">
 					<img
 						class="h-8 w-8 rounded-full object-cover"
-						src="https://randomuser.me/api/portraits/men/1.jpg"
+						src={user.profile_picture}
 						alt="Suggested user"
 						loading="lazy"
 					/>
 					<div>
-						<p class="text-sm text-white">user_1</p>
+						<a href={`api/profile/${user.username}`}>
+							<p class="text-sm text-white">{user.username}</p>
+						</a>
+						
 						<p class="text-xs text-gray-400">Followed by user_a + 3</p>
 					</div>
 				</div>
 				<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Follow</button>
 			</div>
-
-			<div class="mb-4 flex items-center justify-between">
-				<div class="flex items-center space-x-3">
-					<img
-						class="h-8 w-8 rounded-full object-cover"
-						src="https://randomuser.me/api/portraits/women/2.jpg"
-						alt="Suggested user"
-						loading="lazy"
-					/>
-					<div>
-						<p class="text-sm text-white">user_2</p>
-						<p class="text-xs text-gray-400">Suggested for you</p>
-					</div>
-				</div>
-				<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Follow</button>
-			</div>
-
-			<div class="mb-4 flex items-center justify-between">
-				<div class="flex items-center space-x-3">
-					<img
-						class="h-8 w-8 rounded-full object-cover"
-						src="https://randomuser.me/api/portraits/men/3.jpg"
-						alt="Suggested user"
-						loading="lazy"
-					/>
-					<div>
-						<p class="text-sm text-white">user_3</p>
-						<p class="text-xs text-gray-400">Followed by user_a + 3</p>
-					</div>
-				</div>
-				<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Follow</button>
-			</div>
-
-			<div class="mb-4 flex items-center justify-between">
-				<div class="flex items-center space-x-3">
-					<img
-						class="h-8 w-8 rounded-full object-cover"
-						src="https://randomuser.me/api/portraits/women/4.jpg"
-						alt="Suggested user"
-						loading="lazy"
-					/>
-					<div>
-						<p class="text-sm text-white">user_4</p>
-						<p class="text-xs text-gray-400">Suggested for you</p>
-					</div>
-				</div>
-				<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Follow</button>
-			</div>
-
-			<div class="mb-4 flex items-center justify-between">
-				<div class="flex items-center space-x-3">
-					<img
-						class="h-8 w-8 rounded-full object-cover"
-						src="https://randomuser.me/api/portraits/men/5.jpg"
-						alt="Suggested user"
-						loading="lazy"
-					/>
-					<div>
-						<p class="text-sm text-white">user_5</p>
-						<p class="text-xs text-gray-400">Followed by user_a + 3</p>
-					</div>
-				</div>
-				<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Follow</button>
-			</div>
+			{/each}
 		</aside>
 	</div>
 </div>
