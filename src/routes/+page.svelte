@@ -15,13 +15,19 @@
 	}
 
 	function isLiked(articleId) {
-		// If user has toggled it manually
-		if (likeStatus[articleId] !== undefined) {
-			return likeStatus[articleId];
-		}
-		// Otherwise check server info
-		return data.userLikes.includes(articleId);
+	// If the user has toggled it manually
+	if (likeStatus[articleId] !== undefined) {
+		return likeStatus[articleId];
 	}
+
+	for (let i = 0; i < data.userLikes.length; i++) {
+		if (data.userLikes[i] === articleId) {
+			return true; // Article is liked according to the backend
+		}
+	}
+
+	return false; // Article is not liked
+}
 
 	function countComments(articleId) {
 		return data.comments.filter((comment) => comment.article_id === articleId).length;
@@ -52,7 +58,7 @@
 							/>
 						</div>
 					</div>
-					<p class="text-sm font-semibold text-white">{article.author}</p>
+					<a href="/profile"><p class="text-sm font-semibold text-white">{article.author}</p></a>
 				</div>
 
 				<!-- Article Image -->
