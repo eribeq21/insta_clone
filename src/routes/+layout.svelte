@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
-	let { children } = $props();
+	let { data, children } = $props();
+	let user = data.user;
 </script>
 
 <!-- Mobile Navbar Section -->
@@ -15,6 +16,7 @@
 				</a>
 			</li>
 			<li class="flex flex-col items-center">
+				
 				<a href="/search" class="flex flex-col items-center">
 					<span class="text-xs">Search</span>
 				</a>
@@ -70,60 +72,67 @@
 			<a href="/"><h1 class="font-logo mb-2 text-4xl text-white">Instagram</h1></a>
 		</div>
 		<nav>
-			<ul class="flex h-full flex-col space-y-4 py-7 text-base text-white">
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
-				>
-					<a href="/" class="flex pl-3">
-						<p class="ml-4 font-sans text-[16px]">Home</p>
-					</a>
+			<ul class="flex h-full flex-col justify-between py-7 text-base text-white">
+				<!-- Home -->
+				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
+					<img class="h-9 w-9 object-cover" src="white_home.png" alt="" loading="lazy" />
+					<a href="/" class="text-[19px] font-sans">Home</a>
 				</li>
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
-				>
-					<a href="/search" class="flex pl-3">
-						<p class="ml-4 font-sans text-[16px]">Search</p>
-					</a>
+			
+				<!-- Search -->
+				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
+					<img class="h-9 w-9 object-cover" src="search_icon.png" alt="" loading="lazy" />
+					<a href="/search" class="text-[19px] font-sans">Search</a>
 				</li>
-
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer rounded-3xl py-2 hover:bg-gray-500 active:font-semibold"
-				>
-					<a href="/admin/articles_management" class="flex pl-3">
-						<p class="ml-4 font-sans text-[16px]">Articles</p>
-					</a>
+			
+				<!-- Articles -->
+				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
+					<img class="h-9 w-9 object-cover" src="collage.png" alt="" loading="lazy" />
+					<a href="/admin/articles_management" class="text-[19px] font-sans">Articles</a>
 				</li>
+			
+				<!-- Profile Dropdown -->
 				<details class="group">
-					<summary
-						class="hover:bg-opacity-10 flex cursor-pointer list-none rounded-3xl py-2 pl-3 hover:bg-gray-500 active:font-semibold"
+					<summary class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer list-none">
+						<div
+						class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
 					>
-						<a href="/profile"><p class="ml-4 font-sans text-[16px]">Profile</p></a>
+						<div class="h-9 w-9 overflow-hidden rounded-full border-2 border-black bg-white">
+							<img
+								class="h-full w-full object-cover"
+								src={user.profile_picture}
+								alt=""
+								loading="lazy"
+							/>
+						</div>
+					</div>
+						<a href="/profile" class="text-[19px] font-sans">Profile</a>
 					</summary>
-
+			
 					<ul class="absolute right-0 z-50 mt-2 w-48 rounded-lg bg-white shadow-lg">
 						<form action="/logout?/logout" method="POST" class="mt-4">
 							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
 								<button type="submit">Log Out</button>
 							</li>
 						</form>
-
-						<a href="/profile/new_profile_picture"
-							><li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+			
+						<a href="/profile/new_profile_picture">
+							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
 								Change Profile Picture
-							</li></a
-						>
+							</li>
+						</a>
+			
 						<form action="/logout?/deleteAccount" method="POST" class="mt-4">
 							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
-								<button
-									type="submit"
-									class="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600"
-									>Delete Account</button
-								>
+								<button type="submit" class="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600">
+									Delete Account
+								</button>
 							</li>
 						</form>
 					</ul>
 				</details>
 			</ul>
+			
 		</nav>
 	</section>
 

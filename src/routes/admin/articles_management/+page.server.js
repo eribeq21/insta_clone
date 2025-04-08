@@ -2,7 +2,7 @@ import { createConnection } from '$lib/db/mysql';
 import { redirect } from '@sveltejs/kit';
 
 export async function load({ locals, fetch }) {
-	if (!locals.user || locals.user.role !== 'admin') {
+	if (!locals.user) {
 		redirect(302, '/login');
 	}
 	const res = await fetch('/api/articles');
