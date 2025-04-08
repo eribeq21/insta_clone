@@ -12,7 +12,7 @@
 		use:enhance
 		class="w-full max-w-sm border border-gray-300 bg-white px-10 py-8 text-center"
 	>
-		<h1 class="font-logo mb-6 text-4xl">Instagram</h1>
+		<h1 class="font-logo mb-6 text-4xl">ShkodraWeb</h1>
 
 		<input
 			type="text"

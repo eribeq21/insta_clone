@@ -18,7 +18,7 @@
 			</li>
 			<li class="flex flex-col items-center">
 				
-				<a href="/search" class="flex flex-col items-center">
+				<a href="/search_user" class="flex flex-col items-center">
 					<span class="text-xs">Search</span>
 				</a>
 			</li>
@@ -68,12 +68,11 @@
 	
 <div class="flex h-screen bg-black">
 	<!-- Desktop Sidebar -->
-
 	<section
 		class="hidden h-full w-[245px] border-r-[1px] border-r-zinc-800 bg-black px-3 py-6 lg:fixed lg:block"
 	>
 		<div class="px-2 py-3">
-			<a href="/"><h1 class="font-logo mb-2 text-4xl text-white">Instagram</h1></a>
+			<a href="/"><h1 class="font-logo mb-2 text-4xl text-white">ShkodraWeb</h1></a>
 		</div>
 		<nav>
 			<ul class="flex h-full flex-col justify-between py-7 text-base text-white">
@@ -86,7 +85,7 @@
 				<!-- Search -->
 				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
 					<img class="h-9 w-9 object-cover" src="search_icon.png" alt="" loading="lazy" />
-					<a href="/search" class="text-[19px] font-sans">Search</a>
+					<a href="/search_user" class="text-[19px] font-sans">Search</a>
 				</li>
 			
 				<!-- Articles -->
@@ -142,6 +141,7 @@
 			
 		</nav>
 	</section>
+
 
 
 
