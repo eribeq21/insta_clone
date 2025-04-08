@@ -1,6 +1,7 @@
 <script>
+	import { enhance } from '$app/forms';
 	import '../app.css';
-	let { data, children } = $props();
+	let {  data, children } = $props();
 	let user = data.user;
 </script>
 
@@ -63,8 +64,11 @@
 		</ul>
 	</nav>
 </section>
+
+	
 <div class="flex h-screen bg-black">
 	<!-- Desktop Sidebar -->
+
 	<section
 		class="hidden h-full w-[245px] border-r-[1px] border-r-zinc-800 bg-black px-3 py-6 lg:fixed lg:block"
 	>
@@ -90,22 +94,23 @@
 					<img class="h-9 w-9 object-cover" src="collage.png" alt="" loading="lazy" />
 					<a href="/admin/articles_management" class="text-[19px] font-sans">Articles</a>
 				</li>
-			
+				{#if user}
+
 				<!-- Profile Dropdown -->
 				<details class="group">
 					<summary class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer list-none">
 						<div
-						class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
-					>
-						<div class="h-9 w-9 overflow-hidden rounded-full border-2 border-black bg-white">
-							<img
-								class="h-full w-full object-cover"
-								src={user.profile_picture}
-								alt=""
-								loading="lazy"
-							/>
-						</div>
-					</div>
+ 						class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
+ 					>
+ 						<div class="h-9 w-9 overflow-hidden rounded-full border-2 border-black bg-white">
+ 							<img
+ 								class="h-full w-full object-cover"
+ 								src={user.profile_picture}
+ 								alt=""
+ 								loading="lazy"
+ 							/>
+ 						</div>
+ 					</div>
 						<a href="/profile" class="text-[19px] font-sans">Profile</a>
 					</summary>
 			
@@ -122,7 +127,7 @@
 							</li>
 						</a>
 			
-						<form action="/logout?/deleteAccount" method="POST" class="mt-4">
+						<form action="/logout?/deleteAccount" method="POST" class="mt-4" use:enhance>
 							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
 								<button type="submit" class="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600">
 									Delete Account
@@ -131,15 +136,20 @@
 						</form>
 					</ul>
 				</details>
+				{/if}
+
 			</ul>
 			
 		</nav>
 	</section>
 
+
+
 	<!-- Main Content -->
 	<div class="flex-1 lg:ml-[20px]">
 		{@render children()}
 	</div>
+
 </div>
 
 <style>

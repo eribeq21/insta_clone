@@ -1,14 +1,9 @@
+
+
 export async function load({ locals, fetch }) {
+  
     if (!locals.user) {
-            redirect(302, '/login');
-        }
-
-
-
-    return{
-        user: locals.user
+        return { user: null }; // No user is logged in
     }
-
-
-
+    return { user: locals.user }; // Pass ONLY articles
 }
