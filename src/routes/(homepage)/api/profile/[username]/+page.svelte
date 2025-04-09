@@ -31,11 +31,7 @@
 					<p class="text-2xl font-light text-center sm:text-left">{user.username}</p>
 
 					<div class="flex gap-2">
-						<a href="/profile/new_profile-picture">
-							<button class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white hover:bg-zinc-700 transition">
-								Edit profile
-							</button>
-						</a>
+						
 						<form action="/logout?/logout" method="POST">
 							<button type="submit" class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white hover:bg-zinc-700 transition">
 								Log Out
