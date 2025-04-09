@@ -36,15 +36,8 @@
 					<ul
 						class="absolute right-0 bottom-10 z-50 mb-2 w-52 rounded-lg bg-white text-sm text-black shadow-lg"
 					>
-						<form action="/logout?/logout" method="POST">
-							<li class="cursor-pointer px-4 py-2 hover:bg-gray-100">
-								<button type="submit" class="w-full text-left">Log Out</button>
-							</li>
-						</form>
+						
 
-						<a href="/profile/new_profile_picture">
-							<li class="cursor-pointer px-4 py-2 hover:bg-gray-100">Change Profile Picture</li>
-						</a>
 
 						<form action="/logout?/deleteAccount" method="POST">
 							<li class="px-4 py-2">
@@ -111,17 +104,7 @@
 					</summary>
 			
 					<ul class="absolute right-0 z-50 mt-2 w-48 rounded-lg bg-white shadow-lg">
-						<form action="/logout?/logout" method="POST" class="mt-4">
-							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
-								<button type="submit">Log Out</button>
-							</li>
-						</form>
-			
-						<a href="/profile/new_profile_picture">
-							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
-								Change Profile Picture
-							</li>
-						</a>
+					
 			
 						<form action="/logout?/deleteAccount" method="POST" class="mt-4" use:enhance>
 							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
