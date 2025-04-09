@@ -8,6 +8,19 @@ export const actions = {
 		const password = formData.get('password');
 		const username = formData.get('username');
 
+		if (!email || !email.includes('@') || !email.includes('.')) {
+			return  {
+				success: false,
+				message: 'Bitte gib eine gültige E-Mail-Adresse ein.'
+			};
+		}
+		if (!password || password.length < 8) {
+			return {
+				success: false,
+				message: 'Das Passwort muss mindestens 8 Zeichen lang sein.'
+			};
+		}
+
 		const { token, message } = await register(email, username, password);
 
 		if (token) {
