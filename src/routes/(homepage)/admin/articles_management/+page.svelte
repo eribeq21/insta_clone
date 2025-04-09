@@ -5,8 +5,8 @@
 </script>
 
 <section class="flex-1 lg:ml-[220px]">
-	<!-- Main Content -->
-	<div class="mx-auto flex-grow bg-black p-6 text-white shadow-lg">
+	<div class="mx-auto flex-grow bg-black p-6 text-white shadow-lg min-h-screen">
+		<!-- Header -->
 		<div class="mb-6 text-center">
 			<h1 class="text-xl font-semibold text-pink-300 mb-2">All Posts</h1>
 			<a
@@ -16,49 +16,44 @@
 				Upload a new post
 			</a>
 		</div>
-		
-		
 
-		<div class="space-y-4">
+		<!-- Grid Layout -->
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 			{#each data.articles as article (article.id)}
 				<div
-					class="flex transform rounded-xl border border-zinc-800 bg-zinc-900 p-4 shadow-lg transition-transform hover:scale-105"
+					class="bg-zinc-900 border border-zinc-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
 					transition:slide
 				>
-					<!-- Image Section -->
-					<div class="mr-4 flex-shrink-0">
-						<img
-							src={article.image}
-							alt=""
-							class="h-24 w-24 rounded-lg border border-zinc-700 object-cover shadow-md"
-							loading="lazy"
-						/>
-					</div>
+					<!-- Image -->
+					<img
+						src={article.image}
+						alt="Post image"
+						class="w-full h-48 object-cover"
+						loading="lazy"
+					/>
 
-					<!-- Details Section -->
-					<div class="flex-grow">
-						<p class="mt-1 text-xs text-gray-500">Article ID: {article.id}</p>
-						<p class="mt-1 text-xl font-semibold text-white">{article.author}</p>
-						<p class="mt-2 text-base leading-relaxed text-gray-300">{article.description}</p>
-					</div>
+					<!-- Content -->
+					<div class="p-4">
+						<p class="text-xs text-gray-500 mb-1">ID: {article.id}</p>
+						<p class="text-lg font-semibold text-white mb-1">{article.author}</p>
+						<p class="text-sm text-gray-300 mb-4">{article.description}</p>
 
-						
-
-
-					<!-- Delete Button -->
-					<form
-						action="?/deleteArticle"
-						method="POST"
-						use:enhance
-						class="flex items-center justify-end"
-					>
-						<input type="hidden" name="id" value={article.id} />
-						<button
-							type="submit"
-							class="rounded-lg bg-red-600 px-4 py-2 font-bold text-white shadow-md transition-all duration-200 hover:bg-red-700"
-							>Delete</button
+						<!-- Delete Form -->
+						<form
+							action="?/deleteArticle"
+							method="POST"
+							use:enhance
+							class="text-right"
 						>
-					</form>
+							<input type="hidden" name="id" value={article.id} />
+							<button
+								type="submit"
+								class="text-xs bg-red-600 hover:bg-red-700 text-white font-medium px-3 py-1 rounded-full shadow-sm transition-all duration-200"
+							>
+								Delete
+							</button>
+						</form>
+					</div>
 				</div>
 			{/each}
 		</div>
