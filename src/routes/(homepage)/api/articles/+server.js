@@ -13,7 +13,7 @@ export async function GET() {
 				u.profile_picture
 			FROM articles a
 			JOIN users u ON a.author = u.username
-			ORDER BY a.id DESC
+			ORDER BY a.votes DESC
 		`);
 
 		return new Response(JSON.stringify({ articles: rows }), {
