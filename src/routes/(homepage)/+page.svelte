@@ -193,7 +193,10 @@
 						<p class="text-xs text-gray-400">Followed by user_a + 3</p>
 					</div>
 				</div>
-				<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Follow</button>
+				<a href={`api/profile/${user.username}`}>
+					<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
+				</a>
+				
 			</div>
 			{/each}
 		</aside>
