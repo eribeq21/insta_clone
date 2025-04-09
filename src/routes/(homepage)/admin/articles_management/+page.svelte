@@ -7,13 +7,17 @@
 <section class="flex-1 lg:ml-[220px]">
 	<!-- Main Content -->
 	<div class="mx-auto flex-grow bg-black p-6 text-white shadow-lg">
-		<div class="mb-8 text-center">
-			<h1 class="text-3xl font-extrabold">All Posts</h1>
+		<div class="mb-6 text-center">
+			<h1 class="text-xl font-semibold text-pink-300 mb-2">All Posts</h1>
 			<a
 				href="/admin/articles_management/new"
-				class="text-lg font-medium text-blue-400 hover:underline">Upload a new Post</a
+				class="text-sm text-gray-500 hover:text-gray-400 transition-colors"
 			>
+				Upload a new post
+			</a>
 		</div>
+		
+		
 
 		<div class="space-y-4">
 			{#each data.articles as article (article.id)}
