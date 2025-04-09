@@ -1,23 +1,40 @@
+import { createConnection } from '$lib/db/mysql';
 import { redirect } from '@sveltejs/kit';
 
-
-export async function load({ locals }) {
+export async function load({ locals, fetch }) {
 	if (!locals.user) {
-		throw redirect(302, '/login');
+		redirect(302, '/login');
 	}
 }
 
 export const actions = {
 	search_user: async ({ request }) => {
-		const form_data = await request.formData();
-		const theUsername = form_data.get('theUsername');
+		let form_data = await request.formData();
+		let input_value = await form_data.get("input_value");
+		console.log("Input value:", input_value);
+
 		const connection = await createConnection();
 
-		const [users] = await connection.execute('SELECT * FROM users WHERE username = ?', [theUsername]);
+		try {
+			const searchMitLikeSql = `%${input_value}%`; 
+			const [result] = await connection.execute('SELECT * FROM users where username  like ?', [
+				searchMitLikeSql
+			]);
+			console.log("Query result:", result);
 
-		return {
-			success: true,
-			users
-		};
+			return {
+				users:  result,
+				success: true,
+				message: 'Comment added successfully!'
+			};
+		} catch (error) {
+			console.error('Database error:', error);
+			return {
+				success: false,
+				message: 'No users found. Please try again.'
+			};
+		} 
+
 	}
-};
+	
+}
