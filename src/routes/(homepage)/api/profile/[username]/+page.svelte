@@ -91,13 +91,12 @@
 			<div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
 				<!-- Beispiel-Post -->
 				{#each articles as article (article.id)}
-					<a href="api/articles/{article.id}"><img
+					<a href="/api/articles/{article.id}"><img
 						src={article.image}
 						alt=""
 						class="block h-40 w-full rounded-lg bg-gray-700 object-cover" 
                         loading="lazy"
 					/></a>
-					<!-- Füge hier dynamisch weitere Posts ein -->
 				{/each}
 			</div>
 		</div>
