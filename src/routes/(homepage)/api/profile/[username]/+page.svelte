@@ -30,21 +30,7 @@
 				<div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
 					<p class="text-2xl font-light text-center sm:text-left">{user.username}</p>
 
-					<div class="flex gap-2">
-						
-						<form action="/logout?/logout" method="POST">
-							<button type="submit" class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white hover:bg-zinc-700 transition">
-								Log Out
-							</button>
-						</form>
-						<button class="rounded-full bg-zinc-800 p-2 hover:bg-zinc-700 transition">
-							<a href="/admin/articles_management">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-								</svg>
-							</a>
-						</button>
-					</div>
+					
 				</div>
 
 				<!-- Stats -->
