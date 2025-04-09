@@ -2,103 +2,82 @@
 	let { data } = $props();
 	let user = data.user_profile;
 	let articles = data.articles;
+	let profile = user.profile_picture;
 </script>
 
-<!-- Main Container: Padding left auf Desktop wegen Sidebar -->
 <div class="min-h-screen bg-black px-4 py-10 text-white sm:px-6 lg:px-8 lg:pl-[245px]">
-	<!-- Profil Box -->
-	<div class="mx-auto max-w-2xl rounded-lg bg-black shadow-md">
-		<div class="px-3 py-2">
-			<div class="flex flex-col gap-1 text-center">
-				<a href="/profile/new_profile-picture"
-					><img
-						class="mx-auto h-24 w-24 rounded-full border border-gray-400 object-cover shadow-lg"
-						src={user.profile_picture}
-						alt=""
-                        loading="lazy"
-					/></a
-				>
-
-				<p class="font-serif text-xl font-semibold">{user.username}</p>
-				<span class="text-sm text-gray-400">New York, NY - Los Angeles, CA</span>
-			</div>
-
-			<!-- Stats -->
-			<div class="my-4 flex items-center justify-center gap-6 text-center text-sm sm:text-base">
-				<div>
-					<p class="font-bold text-white">102</p>
-					<span class="text-gray-400">Posts</span>
-				</div>
-				<div>
-					<p class="font-bold text-white">102</p>
-					<span class="text-gray-400">Followers</span>
-				</div>
-				<div>
-					<p class="font-bold text-white">102</p>
-					<span class="text-gray-400">Following</span>
-				</div>
-			</div>
-
-			<!-- Buttons -->
-			<div class="my-4 flex flex-col justify-center gap-3 sm:flex-row">
-				<button
-					class="rounded-full bg-pink-500 px-8 py-2 text-white shadow-md transition hover:bg-pink-600"
-					>Follow</button
-				>
-				<button
-					class="rounded-full border border-gray-400 bg-white px-8 py-2 text-black shadow-md transition hover:bg-gray-200"
-					>Message</button
-				>
-			</div>
-
-			<!-- Tabs -->
-			<div class="flex justify-center gap-6 border-b border-gray-600 pb-2">
-				<button class="border-b-2 border-yellow-400 pb-1">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-6 w-6 text-white"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+	<!-- Profile Box -->
+	<div class="mx-auto max-w-4xl flex flex-col gap-8">
+		<!-- Top Section -->
+		<div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+			<!-- Profile Picture -->
+			<div class="relative">
+				<div class="h-32 w-32 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-red-500 p-[3px]">
+					<div class="h-full w-full rounded-full overflow-hidden bg-black border-2 border-black">
+						<img
+							src={profile}
+							alt="profile"
+							class="h-full w-full object-cover"
+							loading="lazy"
 						/>
-					</svg>
-				</button>
-				<button class="pb-1">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-6 w-6 text-white"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-						/>
-					</svg>
-				</button>
+					</div>
+				</div>
 			</div>
 
-			<!-- Grid Placeholder for Posts -->
-			<div class="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
-				<!-- Beispiel-Post -->
-				{#each articles as article (article.id)}
-					<a href="/api/articles/{article.id}"><img
+			<!-- User Info -->
+			<div class="flex-1 space-y-4">
+				<!-- Username & Buttons -->
+				<div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+					<p class="text-2xl font-light text-center sm:text-left">{user.username}</p>
+
+					<div class="flex gap-2">
+						<a href="/profile/new_profile-picture">
+							<button class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white hover:bg-zinc-700 transition">
+								Edit profile
+							</button>
+						</a>
+						<form action="/logout?/logout" method="POST">
+							<button type="submit" class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white hover:bg-zinc-700 transition">
+								Log Out
+							</button>
+						</form>
+						<button class="rounded-full bg-zinc-800 p-2 hover:bg-zinc-700 transition">
+							<a href="/admin/articles_management">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+								</svg>
+							</a>
+						</button>
+					</div>
+				</div>
+
+				<!-- Stats -->
+				<div class="flex gap-6 text-sm">
+					<p><span class="font-semibold">102</span> posts</p>
+					<p><span class="font-semibold">102</span> followers</p>
+					<p><span class="font-semibold">102</span> following</p>
+				</div>
+
+				<!-- Name + Bio -->
+				<div class="text-sm space-y-1">
+					<p class="font-semibold">{user.full_name}</p>
+					<p class="text-xs text-gray-500">@All rights reserved from Eriseldi Zuckerberg</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Posts Grid -->
+		<div class="grid grid-cols-3 gap-1 sm:gap-3">
+			{#each articles as article (article.id)}
+				<a href="/api/articles/{article.id}">
+					<img
 						src={article.image}
-						alt=""
-						class="block h-40 w-full rounded-lg bg-gray-700 object-cover" 
-                        loading="lazy"
-					/></a>
-				{/each}
-			</div>
+						alt="Post"
+						class="aspect-square w-full object-cover bg-neutral-800"
+						loading="lazy"
+					/>
+				</a>
+			{/each}
 		</div>
 	</div>
 </div>
