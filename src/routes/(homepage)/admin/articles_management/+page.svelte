@@ -8,10 +8,10 @@
 	<!-- Main Content -->
 	<div class="mx-auto flex-grow bg-black p-6 text-white shadow-lg">
 		<div class="mb-8 text-center">
-			<h1 class="text-3xl font-extrabold">All Articles</h1>
+			<h1 class="text-3xl font-extrabold">All Posts</h1>
 			<a
 				href="/admin/articles_management/new"
-				class="text-lg font-medium text-blue-400 hover:underline">Upload a new Article</a
+				class="text-lg font-medium text-blue-400 hover:underline">Upload a new Post</a
 			>
 		</div>
 

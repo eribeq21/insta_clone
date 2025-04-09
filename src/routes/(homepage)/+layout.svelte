@@ -22,7 +22,7 @@
 			</li>
 			<li class="flex flex-col items-center">
 				<a href="/admin/articles_management" class="flex flex-col items-center">
-					<span class="text-xs">Articles</span>
+					<span class="text-xs">Posts</span>
 				</a>
 			</li>
 			<!-- Profile with dropdown -->
@@ -89,7 +89,7 @@
 				<!-- Articles -->
 				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
 					<img class="h-9 w-9 object-cover" src="collage.png" alt="" loading="lazy" />
-					<a href="/admin/articles_management" class="text-[19px] font-sans">Articles</a>
+					<a href="/admin/articles_management" class="text-[19px] font-sans">Posts</a>
 				</li>
 
 				<!-- Profile Dropdown -->
