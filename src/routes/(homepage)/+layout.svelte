@@ -1,5 +1,5 @@
 <script>
-	let {  data, children } = $props();
+	let { data, children } = $props();
 	let user = data.user;
 </script>
 
@@ -15,7 +15,6 @@
 				</a>
 			</li>
 			<li class="flex flex-col items-center">
-				
 				<a href="/searchUser" class="flex flex-col items-center">
 					<span class="text-xs">Search</span>
 				</a>
@@ -36,9 +35,6 @@
 					<ul
 						class="absolute right-0 bottom-10 z-50 mb-2 w-52 rounded-lg bg-white text-sm text-black shadow-lg"
 					>
-						
-
-
 						<form action="/logout?/deleteAccount" method="POST">
 							<li class="px-4 py-2">
 								<button
@@ -56,7 +52,6 @@
 	</nav>
 </section>
 
-	
 <div class="flex h-screen bg-black">
 	<!-- Desktop Sidebar -->
 	<section
@@ -68,67 +63,70 @@
 		<nav>
 			<ul class="flex h-full flex-col justify-between py-7 text-base text-white">
 				<!-- Home -->
-				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
+				<li
+					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+				>
 					<img class="h-9 w-9 object-cover" src="white_home.png" alt="" loading="lazy" />
-					<a href="/" class="text-[19px] font-sans">Home</a>
+					<a href="/" class="font-sans text-[19px]">Home</a>
 				</li>
-			
+
 				<!-- Search -->
-				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
+				<li
+					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+				>
 					<img class="h-9 w-9 object-cover" src="search_icon.png" alt="" loading="lazy" />
-					<a href="/searchUser" class="text-[19px] font-sans">Search</a>
+					<a href="/searchUser" class="font-sans text-[19px]">Search</a>
 				</li>
-			
+
 				<!-- Articles -->
-				<li class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer">
+				<li
+					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+				>
 					<img class="h-9 w-9 object-cover" src="collage.png" alt="" loading="lazy" />
-					<a href="/admin/articles_management" class="text-[19px] font-sans">Posts</a>
+					<a href="/admin/articles_management" class="font-sans text-[19px]">Posts</a>
 				</li>
 
 				<!-- Profile Dropdown -->
 				<details class="group">
-					<summary class="flex items-center space-x-4 hover:bg-gray-500 hover:bg-opacity-10 rounded-3xl px-3 py-2 cursor-pointer list-none">
+					<summary
+						class="hover:bg-opacity-10 flex cursor-pointer list-none items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+					>
 						<div
- 						class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
- 					>
- 						<div class="h-9 w-9 overflow-hidden rounded-full border-2 border-black bg-white">
- 							<img
- 								class="h-full w-full object-cover"
- 								src={user.profile_picture}
- 								alt=""
- 								loading="lazy"
- 							/>
- 						</div>
- 					</div>
-						<a href="/profile" class="text-[19px] font-sans">Profile</a>
+							class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
+						>
+							<div class="h-9 w-9 overflow-hidden rounded-full border-2 border-black bg-white">
+								<img
+									class="h-full w-full object-cover"
+									src={user.profile_picture}
+									alt=""
+									loading="lazy"
+								/>
+							</div>
+						</div>
+						<a href="/profile" class="font-sans text-[19px]">Profile</a>
 					</summary>
-			
+
 					<ul class="absolute right-0 z-50 mt-2 w-48 rounded-lg bg-white shadow-lg">
-					
-			
 						<form action="/logout?/deleteAccount" method="POST" class="mt-4" use:enhance>
 							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
-								<button type="submit" class="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600">
+								<button
+									type="submit"
+									class="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600"
+								>
 									Delete Account
 								</button>
 							</li>
 						</form>
 					</ul>
 				</details>
-
 			</ul>
-			
 		</nav>
 	</section>
-
-
-
 
 	<!-- Main Content -->
 	<div class="flex-1 lg:ml-[20px]">
 		{@render children()}
 	</div>
-
 </div>
 
 <style>

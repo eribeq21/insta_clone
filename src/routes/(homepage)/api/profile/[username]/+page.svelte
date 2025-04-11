@@ -7,19 +7,16 @@
 
 <div class="min-h-screen bg-black px-4 py-10 text-white sm:px-6 lg:px-8 lg:pl-[245px]">
 	<!-- Profile Box -->
-	<div class="mx-auto max-w-4xl flex flex-col gap-8">
+	<div class="mx-auto flex max-w-4xl flex-col gap-8">
 		<!-- Top Section -->
-		<div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+		<div class="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
 			<!-- Profile Picture -->
 			<div class="relative">
-				<div class="h-32 w-32 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-red-500 p-[3px]">
-					<div class="h-full w-full rounded-full overflow-hidden bg-black border-2 border-black">
-						<img
-							src={profile}
-							alt="profile"
-							class="h-full w-full object-cover"
-							loading="lazy"
-						/>
+				<div
+					class="h-32 w-32 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-red-500 p-[3px]"
+				>
+					<div class="h-full w-full overflow-hidden rounded-full border-2 border-black bg-black">
+						<img src={profile} alt="profile" class="h-full w-full object-cover" loading="lazy" />
 					</div>
 				</div>
 			</div>
@@ -27,10 +24,8 @@
 			<!-- User Info -->
 			<div class="flex-1 space-y-4">
 				<!-- Username & Buttons -->
-				<div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-					<p class="text-2xl font-light text-center sm:text-left">{user.username}</p>
-
-					
+				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+					<p class="text-center text-2xl font-light sm:text-left">{user.username}</p>
 				</div>
 
 				<!-- Stats -->
@@ -41,7 +36,7 @@
 				</div>
 
 				<!-- Name + Bio -->
-				<div class="text-sm space-y-1">
+				<div class="space-y-1 text-sm">
 					<p class="font-semibold">{user.full_name}</p>
 					<p class="text-xs text-gray-500">@All rights reserved from Eriseldi Zuckerberg</p>
 				</div>
@@ -55,7 +50,7 @@
 					<img
 						src={article.image}
 						alt="Post"
-						class="aspect-square w-full object-cover bg-neutral-800"
+						class="aspect-square w-full bg-neutral-800 object-cover"
 						loading="lazy"
 					/>
 				</a>

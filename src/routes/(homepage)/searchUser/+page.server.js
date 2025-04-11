@@ -10,20 +10,20 @@ export async function load({ locals, fetch }) {
 export const actions = {
 	search_user: async ({ request }) => {
 		let form_data = await request.formData();
-		let input_value = await form_data.get("input_value");
-		console.log("Input value:", input_value);
+		let input_value = await form_data.get('input_value');
+		console.log('Input value:', input_value);
 
 		const connection = await createConnection();
 
 		try {
-			const searchMitLikeSql = `%${input_value}%`; 
+			const searchMitLikeSql = `%${input_value}%`;
 			const [result] = await connection.execute('SELECT * FROM users where username  like ?', [
 				searchMitLikeSql
 			]);
-			console.log("Query result:", result);
+			console.log('Query result:', result);
 
 			return {
-				users:  result,
+				users: result,
 				success: true,
 				message: 'Comment added successfully!'
 			};
@@ -33,8 +33,6 @@ export const actions = {
 				success: false,
 				message: 'No users found. Please try again.'
 			};
-		} 
-
+		}
 	}
-	
-}
+};

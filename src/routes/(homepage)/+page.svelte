@@ -15,19 +15,19 @@
 	}
 
 	function isLiked(articleId) {
-	// If the user has toggled it manually
-	if (likeStatus[articleId] !== undefined) {
-		return likeStatus[articleId];
-	}
-
-	for (let i = 0; i < data.userLikes.length; i++) {
-		if (data.userLikes[i] === articleId) {
-			return true; // Article is liked according to the backend
+		// If the user has toggled it manually
+		if (likeStatus[articleId] !== undefined) {
+			return likeStatus[articleId];
 		}
-	}
 
-	return false; // Article is not liked
-}
+		for (let i = 0; i < data.userLikes.length; i++) {
+			if (data.userLikes[i] === articleId) {
+				return true; // Article is liked according to the backend
+			}
+		}
+
+		return false; // Article is not liked
+	}
 
 	function countComments(articleId) {
 		return data.comments.filter((comment) => comment.article_id === articleId).length;
@@ -39,14 +39,22 @@
 	}
 
 	function getAuthorProfileLink(authorName) {
-    const user = data.users.find((user) => user.username === authorName);
-    if (user) {
-        return `api/profile/${user.username}`;
-    } else {
-        return '#';
-    }
-}
+		const user = data.users.find((user) => user.username === authorName);
+		if (user) {
+			return `api/profile/${user.username}`;
+		} else {
+			return '#';
+		}
+	}
 
+
+	let seeAllusers = $state(false);
+
+	function seeAll(){
+		seeAllusers = !seeAllusers;
+
+
+	}
 </script>
 
 <div class="layout min-h-screen bg-black p-4 lg:p-8">
@@ -69,8 +77,8 @@
 						</div>
 					</div>
 					<a href={getAuthorProfileLink(article.author)}>
-                        <p class="text-sm font-semibold text-white">{article.author}</p>
-                    </a>
+						<p class="text-sm font-semibold text-white">{article.author}</p>
+					</a>
 				</div>
 
 				<!-- Article Image -->
@@ -163,42 +171,72 @@
 	</section>
 	<!-- Right Sidebar Section (Only visible on large screens) -->
 	<div class="space-y-3">
-
-			
 		<aside class="sidebar m-7 hidden xl:block">
-			
-
 			<div class="py-3">
 				<div class="flex items-center justify-between">
 					<span class="font-semibold text-gray-400">Suggestions for you</span>
-					<button class="text-sm font-semibold text-white hover:text-gray-300">See All</button>
-				</div>
-			</div>
-			{#each  data.users as  user }
-				
+					<button class="text-sm font-semibold text-white hover:text-gray-300"  onclick={seeAll}>
 
-			<div class="mb-4 flex items-center justify-between">
-				<div class="flex items-center space-x-3">
-					<img
-						class="h-8 w-8 rounded-full object-cover"
-						src={user.profile_picture}
-						alt="Suggested user"
-						loading="lazy"
-					/>
-					<div>
-						<a href={`api/profile/${user.username}`}>
-							<p class="text-sm text-white">{user.username}</p>
-						</a>
+						{#if seeAllusers}
+						    Show less
+						{:else}
+						    See all
+						{/if}
 						
-						<p class="text-xs text-gray-400">Followed by user_a + 3</p>
-					</div>
+						
+					</button>
 				</div>
-				<a href={`api/profile/${user.username}`}>
-					<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
-				</a>
-				
 			</div>
+
+			{#if seeAllusers === false}
+			{#each data.users.slice(0, 5) as user}
+				<div class="mb-4 flex items-center justify-between">
+					<div class="flex items-center space-x-3">
+						<img
+							class="h-8 w-8 rounded-full object-cover"
+							src={user.profile_picture}
+							alt="Suggested user"
+							loading="lazy"
+						/>
+						<div>
+							<a href={`api/profile/${user.username}`}>
+								<p class="text-sm text-white">{user.username}</p>
+							</a>
+
+							<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+						</div>
+					</div>
+					<a href={`api/profile/${user.username}`}>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
+					</a>
+				</div>
 			{/each}
+			{:else}
+			{#each data.users  as user}
+				<div class="mb-4 flex items-center justify-between">
+					<div class="flex items-center space-x-3">
+						<img
+							class="h-8 w-8 rounded-full object-cover"
+							src={user.profile_picture}
+							alt="Suggested user"
+							loading="lazy"
+						/>
+						<div>
+							<a href={`api/profile/${user.username}`}>
+								<p class="text-sm text-white">{user.username}</p>
+							</a>
+
+							<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+						</div>
+					</div>
+					<a href={`api/profile/${user.username}`}>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
+					</a>
+				</div>
+			{/each}
+			{/if}
+			
+
 		</aside>
 	</div>
 </div>

@@ -9,7 +9,7 @@ export const actions = {
 		const username = formData.get('username');
 
 		if (!email || !email.includes('@') || !email.includes('.')) {
-			return  {
+			return {
 				success: false,
 				message: 'Bitte gib eine gültige E-Mail-Adresse ein.'
 			};
