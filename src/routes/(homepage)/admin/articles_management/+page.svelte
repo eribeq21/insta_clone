@@ -25,12 +25,7 @@
 					transition:slide
 				>
 					<!-- Image -->
-					<img
-						src={article.image}
-						alt=""
-						class="h-48 w-full object-cover"
-						loading="lazy"
-					/>
+					<img src={article.image} alt="" class="h-48 w-full object-cover" loading="lazy" />
 
 					<!-- Content -->
 					<div class="p-4">

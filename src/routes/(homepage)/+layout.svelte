@@ -1,9 +1,7 @@
 <script>
-	import { enhance } from "$app/forms";
+	import { enhance } from '$app/forms';
 	let { data, children } = $props();
 	let user = data.user;
-	
-
 </script>
 
 <!-- Mobile Navbar Section -->
@@ -134,7 +132,6 @@
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
-
 	.font-logo {
 		font-family: 'Grand Hotel', cursive;
 	}

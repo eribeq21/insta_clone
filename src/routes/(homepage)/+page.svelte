@@ -47,13 +47,10 @@
 		}
 	}
 
-
 	let seeAllusers = $state(false);
 
-	function seeAll(){
+	function seeAll() {
 		seeAllusers = !seeAllusers;
-
-
 	}
 </script>
 
@@ -175,68 +172,63 @@
 			<div class="py-3">
 				<div class="flex items-center justify-between">
 					<span class="font-semibold text-gray-400">Suggestions for you</span>
-					<button class="text-sm font-semibold text-white hover:text-gray-300"  onclick={seeAll}>
-
+					<button class="text-sm font-semibold text-white hover:text-gray-300" onclick={seeAll}>
 						{#if seeAllusers}
-						    Show less
+							Show less
 						{:else}
-						    See all
+							See all
 						{/if}
-						
-						
 					</button>
 				</div>
 			</div>
 
 			{#if seeAllusers === false}
-			{#each data.users.slice(0, 5) as user}
-				<div class="mb-4 flex items-center justify-between">
-					<div class="flex items-center space-x-3">
-						<img
-							class="h-8 w-8 rounded-full object-cover"
-							src={user.profile_picture}
-							alt="Suggested user"
-							loading="lazy"
-						/>
-						<div>
-							<a href={`api/profile/${user.username}`}>
-								<p class="text-sm text-white">{user.username}</p>
-							</a>
+				{#each data.users.slice(0, 5) as user}
+					<div class="mb-4 flex items-center justify-between">
+						<div class="flex items-center space-x-3">
+							<img
+								class="h-8 w-8 rounded-full object-cover"
+								src={user.profile_picture}
+								alt="Suggested user"
+								loading="lazy"
+							/>
+							<div>
+								<a href={`api/profile/${user.username}`}>
+									<p class="text-sm text-white">{user.username}</p>
+								</a>
 
-							<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+								<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+							</div>
 						</div>
+						<a href={`api/profile/${user.username}`}>
+							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
+						</a>
 					</div>
-					<a href={`api/profile/${user.username}`}>
-						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
-					</a>
-				</div>
-			{/each}
+				{/each}
 			{:else}
-			{#each data.users  as user}
-				<div class="mb-4 flex items-center justify-between">
-					<div class="flex items-center space-x-3">
-						<img
-							class="h-8 w-8 rounded-full object-cover"
-							src={user.profile_picture}
-							alt="Suggested user"
-							loading="lazy"
-						/>
-						<div>
-							<a href={`api/profile/${user.username}`}>
-								<p class="text-sm text-white">{user.username}</p>
-							</a>
+				{#each data.users as user}
+					<div class="mb-4 flex items-center justify-between">
+						<div class="flex items-center space-x-3">
+							<img
+								class="h-8 w-8 rounded-full object-cover"
+								src={user.profile_picture}
+								alt="Suggested user"
+								loading="lazy"
+							/>
+							<div>
+								<a href={`api/profile/${user.username}`}>
+									<p class="text-sm text-white">{user.username}</p>
+								</a>
 
-							<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+								<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+							</div>
 						</div>
+						<a href={`api/profile/${user.username}`}>
+							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
+						</a>
 					</div>
-					<a href={`api/profile/${user.username}`}>
-						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
-					</a>
-				</div>
-			{/each}
+				{/each}
 			{/if}
-			
-
 		</aside>
 	</div>
 </div>

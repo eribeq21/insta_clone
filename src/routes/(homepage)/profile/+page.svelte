@@ -1,13 +1,11 @@
 <script>
+	import { enhance } from '$app/forms';
 	let { data } = $props();
 	let user = data.user;
 	let articles = data.articles;
 	let profile = user.profile_picture;
 	let alleLikes = data.likesSum[0].votes;
 	let allPosts = data.countArticles[0].allArticles;
-
-	
-	
 </script>
 
 <div class="min-h-screen bg-black px-4 py-10 text-white sm:px-6 lg:px-8 lg:pl-[245px]">
@@ -40,7 +38,7 @@
 								Edit profile
 							</button></a
 						>
-						<form action="/logout?/logout" method="POST">
+						<form action="/logout?/logout" method="POST" use:enhance>
 							<button
 								type="submit"
 								class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white transition hover:bg-zinc-700"

@@ -1,12 +1,13 @@
 <script>
-	let { data } = $props();
+	let { data, form } = $props();
 	let user = data.user_profile;
 	let articles = data.articles;
 	let profile = user.profile_picture;
 	let alleLikes = data.likesSum[0].votes;
 	let allPosts = data.countArticles[0].allArticles;
+	let followers  = data.followersPerUser[0].follower_count;
 
-
+	let isFollowing = data.isFollowing;
 </script>
 
 <div class="min-h-screen bg-black px-4 py-10 text-white sm:px-6 lg:px-8 lg:pl-[245px]">
@@ -35,8 +36,23 @@
 				<!-- Stats -->
 				<div class="flex gap-6 text-sm">
 					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
-					<p><span class="font-semibold">{alleLikes}</span> {alleLikes === 1 ? 'like' : 'likes'}</p>
-					<p><span class="font-semibold">102</span> following</p>
+					<p><span class="font-semibold">{followers}</span> {followers === 1 ? 'follower' : 'followers'}</p>
+					<form method="POST" action="?/toggleFollow">
+						<input type="hidden" name="following_id" value={user.id} />
+
+						{#if isFollowing}
+							<button
+								type="submit"
+								class="rounded-full border bg-white px-4 py-1 text-sm font-medium text-black"
+							>
+								Unfollow
+							</button>
+						{:else}
+							<button type="submit" class="rounded-full bg-blue-500 px-4 py-1 text-sm font-medium">
+								Follow
+							</button>
+						{/if}
+					</form>
 				</div>
 
 				<!-- Name + Bio -->

@@ -19,17 +19,14 @@ export async function load({ locals, fetch }) {
 	const [rowss] = await connection.execute('Select a.votes , a.id from articles a;');
 
 	const [likesSum] = await connection.execute(
-		'Select sum(votes) as votes from articles where author = ?', [
-			locals.user.username
-		]
-	)
+		'Select sum(votes) as votes from articles where author = ?',
+		[locals.user.username]
+	);
 
 	const [countArticles] = await connection.execute(
-		'Select count(*) as allArticles from articles where author = ? ', [
-			locals.user.username
-		]
-	)
+		'Select count(*) as allArticles from articles where author = ? ',
+		[locals.user.username]
+	);
 
-
-	return { articles, comments: rows, likes: rowss, user: locals.user , likesSum, countArticles}; // Pass ONLY articles
+	return { articles, comments: rows, likes: rowss, user: locals.user, likesSum, countArticles }; // Pass ONLY articles
 }
