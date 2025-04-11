@@ -33,30 +33,41 @@
 				<!-- Username & Buttons -->
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
 					<p class="text-center text-2xl font-light sm:text-left">{user.username}</p>
+				
+					<div class="flex justify-center sm:justify-start">
+
+						<!-- Follow / Unfollow Button -->
+						<form method="POST" action="?/toggleFollow" use:enhance>
+							<input type="hidden" name="following_id" value={user.id} />
+					
+							{#if isFollowing}
+								<button
+									type="submit"
+									class="rounded-full border border-gray-300 bg-white px-4 py-1 text-sm font-medium text-black hover:bg-gray-100 transition"
+								>
+									Unfollow
+								</button>
+							{:else}
+								<button
+									type="submit"
+									class="rounded-full bg-blue-500 px-4 py-1 text-sm font-medium hover:bg-blue-600 transition"
+								>
+									Follow
+								</button>
+							{/if}
+						</form>
+						</div>
 				</div>
+				
 
 				<!-- Stats -->
 				<div class="flex gap-6 text-sm">
 					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
 					<p><span class="font-semibold">{following} </span> following</p>
 					<p><span class="font-semibold">{followers}</span> {followers === 1 ? 'follower' : 'followers'}</p>
-					<form method="POST" action="?/toggleFollow" use:enhance>
-						<input type="hidden" name="following_id" value={user.id} />
-
-						{#if isFollowing}
-							<button
-								type="submit"
-								class="rounded-full border bg-white px-4 py-1 text-sm font-medium text-black"
-							>
-								Unfollow
-							</button>
-						{:else}
-							<button type="submit" class="rounded-full bg-blue-500 px-4 py-1 text-sm font-medium">
-								Follow
-							</button>
-						{/if}
-					</form>
+					
 				</div>
+			
 
 				<!-- Name + Bio -->
 				<div class="space-y-1 text-sm">
