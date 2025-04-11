@@ -1,6 +1,9 @@
 <script>
+	import { enhance } from "$app/forms";
 	let { data, children } = $props();
 	let user = data.user;
+	
+
 </script>
 
 <!-- Mobile Navbar Section -->

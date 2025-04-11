@@ -27,7 +27,7 @@
 					<!-- Image -->
 					<img
 						src={article.image}
-						alt="Post image"
+						alt=""
 						class="h-48 w-full object-cover"
 						loading="lazy"
 					/>

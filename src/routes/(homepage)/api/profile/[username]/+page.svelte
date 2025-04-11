@@ -3,6 +3,10 @@
 	let user = data.user_profile;
 	let articles = data.articles;
 	let profile = user.profile_picture;
+	let alleLikes = data.likesSum[0].votes;
+	let allPosts = data.countArticles[0].allArticles;
+
+
 </script>
 
 <div class="min-h-screen bg-black px-4 py-10 text-white sm:px-6 lg:px-8 lg:pl-[245px]">
@@ -30,8 +34,8 @@
 
 				<!-- Stats -->
 				<div class="flex gap-6 text-sm">
-					<p><span class="font-semibold">102</span> posts</p>
-					<p><span class="font-semibold">102</span> followers</p>
+					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
+					<p><span class="font-semibold">{alleLikes}</span> {alleLikes === 1 ? 'like' : 'likes'}</p>
 					<p><span class="font-semibold">102</span> following</p>
 				</div>
 
