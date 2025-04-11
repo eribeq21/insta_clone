@@ -45,6 +45,21 @@ export async function load({ params, fetch, locals }) {
     `, [
         username
     ]);
+
+    const [followingPerUser] = await connection.execute(`
+        SELECT 
+            u.id,
+            u.username,
+            u.profile_picture,
+            COUNT(f.following_id) AS following_count
+        FROM users u
+        LEFT JOIN follows f ON u.id = f.follower_id
+        WHERE u.username = ?
+        GROUP BY u.id
+    `, [
+        username
+    ]);
+    
     
 
 
@@ -54,7 +69,8 @@ export async function load({ params, fetch, locals }) {
 		likesSum,
 		countArticles,
 		isFollowing, 
-        followersPerUser
+        followersPerUser, 
+        followingPerUser
 	};
 }
 

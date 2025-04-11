@@ -27,6 +27,33 @@ export async function load({ locals, fetch }) {
 		'Select count(*) as allArticles from articles where author = ? ',
 		[locals.user.username]
 	);
+	
+    const [followersPerUser] = await connection.execute(`
+        SELECT 
+            u.id,
+            u.username,
+            u.profile_picture,
+            COUNT(f.follower_id) AS follower_count
+        FROM users u
+        LEFT JOIN follows f ON u.id = f.following_id
+        where u.username = ? 
+    `, [
+        locals.user.username
+    ]);
 
-	return { articles, comments: rows, likes: rowss, user: locals.user, likesSum, countArticles }; // Pass ONLY articles
+    const [followingPerUser] = await connection.execute(`
+        SELECT 
+            u.id,
+            u.username,
+            u.profile_picture,
+            COUNT(f.following_id) AS following_count
+        FROM users u
+        LEFT JOIN follows f ON u.id = f.follower_id
+        WHERE u.username = ?
+        GROUP BY u.id
+    `, [
+		locals.user.username
+        
+    ]);
+	return { articles, comments: rows, likes: rowss, user: locals.user, likesSum, countArticles , followersPerUser, followingPerUser}; // Pass ONLY articles
 }

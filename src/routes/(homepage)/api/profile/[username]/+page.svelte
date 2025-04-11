@@ -1,4 +1,5 @@
 <script>
+
 	let { data, form } = $props();
 	let user = data.user_profile;
 	let articles = data.articles;
@@ -6,6 +7,7 @@
 	let alleLikes = data.likesSum[0].votes;
 	let allPosts = data.countArticles[0].allArticles;
 	let followers  = data.followersPerUser[0].follower_count;
+	let following = data.followingPerUser[0].following_count;
 
 	let isFollowing = data.isFollowing;
 </script>
@@ -36,8 +38,9 @@
 				<!-- Stats -->
 				<div class="flex gap-6 text-sm">
 					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
+					<p><span class="font-semibold">{following} </span> following</p>
 					<p><span class="font-semibold">{followers}</span> {followers === 1 ? 'follower' : 'followers'}</p>
-					<form method="POST" action="?/toggleFollow">
+					<form method="POST" action="?/toggleFollow" use:enhance>
 						<input type="hidden" name="following_id" value={user.id} />
 
 						{#if isFollowing}
