@@ -2,8 +2,9 @@
 	import { enhance } from '$app/forms';
 	let { data } = $props();
 	let user = data.user;
-	let showComments = $state(false);
 
+	
+	let showComments = $state(false);
 	function showTheComments() {
 		showComments = !showComments;
 	}
