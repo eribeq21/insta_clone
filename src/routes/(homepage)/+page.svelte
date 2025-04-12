@@ -132,12 +132,16 @@
 								<div
 									class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
 								>
+						{#each data.users as  user}
+							{#if user.username === comment.name}
 									<img
 										class="h-6 w-6 rounded-full object-cover"
-										src={article.profile_picture}
+										src={user.profile_picture}
 										alt={comment.name}
 										loading="lazy"
 									/>
+									{/if}
+						{/each}
 								</div>
 								<p class="text-sm text-white">
 									<span class="font-semibold">{comment.name}</span>
