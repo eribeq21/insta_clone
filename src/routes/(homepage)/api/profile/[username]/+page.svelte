@@ -189,32 +189,26 @@
 							{/if}
 						</div>
 					</div>
-						{#if current_user.username === following.username}
-							<a href={`/profile`} onclick={() => (showFollowing = false)}>
-								<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
-									You
-								</button>
-							</a>
-						{:else}
-							<div>
-								<a
-									href={`/api/profile/${following.username}`}
-									onclick={() => (showFollowers = false)}
-								>
-									<p class="text-sm text-white">{following.username}</p>
-								</a>
-							</div>
+					{#if current_user.username === following.username}
+						<a href={`/profile`} onclick={() => (showFollowing = false)}>
+							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> You </button>
+						</a>
+					{:else}
+						<div>
 							<a
 								href={`/api/profile/${following.username}`}
-								onclick={() => (showFollowing = false)}
+								onclick={() => (showFollowers = false)}
 							>
-								<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
-									Visit
-								</button>
+								<p class="text-sm text-white">{following.username}</p>
 							</a>
-						{/if}
-					</div>
-			
+						</div>
+						<a href={`/api/profile/${following.username}`} onclick={() => (showFollowing = false)}>
+							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
+								Visit
+							</button>
+						</a>
+					{/if}
+				</div>
 			{/each}
 		</div>
 	{/if}
