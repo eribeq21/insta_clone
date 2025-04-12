@@ -1,5 +1,5 @@
 <script>
-
+	import { enhance } from "$app/forms";
 	let { data, form } = $props();
 	let user = data.user_profile;
 	let articles = data.articles;
