@@ -1,5 +1,4 @@
 <script>
-	import { enhance } from '$app/forms';
 	let { data, form } = $props();
 	let user = data.user_profile;
 	let articles = data.articles;
@@ -36,7 +35,7 @@
 
 					<div class="flex justify-center sm:justify-start">
 						<!-- Follow / Unfollow Button -->
-						<form method="POST" action="?/toggleFollow" use:enhance>
+						<form method="POST" action="?/toggleFollow">
 							<input type="hidden" name="following_id" value={user.id} />
 
 							{#if isFollowing}
