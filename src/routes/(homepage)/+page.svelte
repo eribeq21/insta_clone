@@ -191,54 +191,56 @@
 
 			{#if seeAllusers === false}
 				{#each data.users.slice(0, 5) as user}
-				{#if user.username !== data.user.username}
+					{#if user.username !== data.user.username}
+						<div class="mb-4 flex items-center justify-between">
+							<div class="flex items-center space-x-3">
+								<img
+									class="h-8 w-8 rounded-full object-cover"
+									src={user.profile_picture}
+									alt="Suggested user"
+									loading="lazy"
+								/>
+								<div>
+									<a href={`api/profile/${user.username}`}>
+										<p class="text-sm text-white">{user.username}</p>
+									</a>
 
-					<div class="mb-4 flex items-center justify-between">
-						<div class="flex items-center space-x-3">
-							<img
-								class="h-8 w-8 rounded-full object-cover"
-								src={user.profile_picture}
-								alt="Suggested user"
-								loading="lazy"
-							/>
-							<div>
-								<a href={`api/profile/${user.username}`}>
-									<p class="text-sm text-white">{user.username}</p>
-								</a>
-
-								<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+									<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+								</div>
 							</div>
+							<a href={`api/profile/${user.username}`}>
+								<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"
+									>Visit</button
+								>
+							</a>
 						</div>
-						<a href={`api/profile/${user.username}`}>
-							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
-						</a>
-					</div>
 					{/if}
 				{/each}
 			{:else}
 				{#each data.users as user}
-				{#if user.username !== data.user.username}
+					{#if user.username !== data.user.username}
+						<div class="mb-4 flex items-center justify-between">
+							<div class="flex items-center space-x-3">
+								<img
+									class="h-8 w-8 rounded-full object-cover"
+									src={user.profile_picture}
+									alt="Suggested user"
+									loading="lazy"
+								/>
+								<div>
+									<a href={`api/profile/${user.username}`}>
+										<p class="text-sm text-white">{user.username}</p>
+									</a>
 
-					<div class="mb-4 flex items-center justify-between">
-						<div class="flex items-center space-x-3">
-							<img
-								class="h-8 w-8 rounded-full object-cover"
-								src={user.profile_picture}
-								alt="Suggested user"
-								loading="lazy"
-							/>
-							<div>
-								<a href={`api/profile/${user.username}`}>
-									<p class="text-sm text-white">{user.username}</p>
-								</a>
-
-								<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+									<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+								</div>
 							</div>
+							<a href={`api/profile/${user.username}`}>
+								<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"
+									>Visit</button
+								>
+							</a>
 						</div>
-						<a href={`api/profile/${user.username}`}>
-							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
-						</a>
-					</div>
 					{/if}
 				{/each}
 			{/if}

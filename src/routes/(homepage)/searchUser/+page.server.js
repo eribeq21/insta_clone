@@ -6,9 +6,9 @@ export async function load({ locals, fetch }) {
 		redirect(302, '/login');
 	}
 
-	return{
-		user : locals.user
-	}
+	return {
+		user: locals.user
+	};
 }
 
 export const actions = {

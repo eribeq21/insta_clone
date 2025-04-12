@@ -9,9 +9,6 @@
 	let following = data.followingPerUser[0].following_count;
 	let showFollowers = $state(false);
 	let showFollowing = $state(false);
-
-
-	
 </script>
 
 <div class="min-h-screen bg-black px-4 py-10 text-white sm:px-6 lg:px-8 lg:pl-[245px]">
@@ -76,10 +73,16 @@
 				<!-- Stats -->
 				<div class="flex gap-6 text-sm">
 					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
-					<p onclick={() => showFollowing = !showFollowing} class="cursor-pointer hover:underline">
+					<p
+						onclick={() => (showFollowing = !showFollowing)}
+						class="cursor-pointer hover:underline"
+					>
 						<span class="font-semibold">{following}</span> following
 					</p>
-					<p onclick={() => showFollowers = !showFollowers} class="cursor-pointer hover:underline">
+					<p
+						onclick={() => (showFollowers = !showFollowers)}
+						class="cursor-pointer hover:underline"
+					>
 						<span class="font-semibold">{followers}</span>
 						{followers === 1 ? 'follower' : 'followers'}
 					</p>
@@ -108,79 +111,76 @@
 		</div>
 	</div>
 	{#if showFollowers}
-	<div class="fixed right-0 top-0 z-50 h-full w-full max-w-sm overflow-y-auto bg-zinc-900 p-6 shadow-xl sm:rounded-l-2xl sm:border-l border-zinc-800">
-		<div class="flex justify-between items-center mb-4">
-			<h2 class="text-lg font-bold text-white">Followers</h2>
-			<button
-				onclick={() => showFollowers = false}
-				class="text-white hover:text-red-400 text-sm"
-			>
-				Close
-			</button>
-		</div>
-
-		{#each data.followersList as follower}
+		<div
+			class="fixed top-0 right-0 z-50 h-full w-full max-w-sm overflow-y-auto border-zinc-800 bg-zinc-900 p-6 shadow-xl sm:rounded-l-2xl sm:border-l"
+		>
 			<div class="mb-4 flex items-center justify-between">
-				<div class="flex items-center space-x-3">
-					<img
-						class="h-8 w-8 rounded-full object-cover"
-						src={follower.profile_picture}
-						alt="Follower user"
-						loading="lazy"
-					/>
-					<div>
-						<a href={`/api/profile/${follower.username}`}>
-							<p class="text-sm text-white">{follower.username}</p>
-						</a>
-					</div>
-				</div>
-				<a href={`/api/profile/${follower.username}`}>
-					<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
-						Visit
-					</button>
-				</a>
+				<h2 class="text-lg font-bold text-white">Followers</h2>
+				<button
+					onclick={() => (showFollowers = false)}
+					class="text-sm text-white hover:text-red-400"
+				>
+					Close
+				</button>
 			</div>
-		{/each}
-	</div>
-{/if}
 
-{#if showFollowing}
-	<div class="fixed right-0 top-0 z-50 h-full w-full max-w-sm overflow-y-auto bg-zinc-900 p-6 shadow-xl sm:rounded-l-2xl sm:border-l border-zinc-800">
-		<div class="flex justify-between items-center mb-4">
-			<h2 class="text-lg font-bold text-white">Following</h2>
-			<button
-				onclick={() => showFollowing = false}
-				class="text-white hover:text-red-400 text-sm"
-			>
-				Close
-			</button>
+			{#each data.followersList as follower}
+				<div class="mb-4 flex items-center justify-between">
+					<div class="flex items-center space-x-3">
+						<img
+							class="h-8 w-8 rounded-full object-cover"
+							src={follower.profile_picture}
+							alt="Follower user"
+							loading="lazy"
+						/>
+						<div>
+							<a href={`/api/profile/${follower.username}`}>
+								<p class="text-sm text-white">{follower.username}</p>
+							</a>
+						</div>
+					</div>
+					<a href={`/api/profile/${follower.username}`}>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> Visit </button>
+					</a>
+				</div>
+			{/each}
 		</div>
+	{/if}
 
-		{#each data.followingList as following}
+	{#if showFollowing}
+		<div
+			class="fixed top-0 right-0 z-50 h-full w-full max-w-sm overflow-y-auto border-zinc-800 bg-zinc-900 p-6 shadow-xl sm:rounded-l-2xl sm:border-l"
+		>
 			<div class="mb-4 flex items-center justify-between">
-				<div class="flex items-center space-x-3">
-					<img
-						class="h-8 w-8 rounded-full object-cover"
-						src={following.profile_picture}
-						alt="Following user"
-						loading="lazy"
-					/>
-					<div>
-						<a href={`/api/profile/${following.username}`}>
-							<p class="text-sm text-white">{following.username}</p>
-						</a>
-					</div>
-				</div>
-				<a href={`/api/profile/${following.username}`}>
-					<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
-						Visit
-					</button>
-				</a>
+				<h2 class="text-lg font-bold text-white">Following</h2>
+				<button
+					onclick={() => (showFollowing = false)}
+					class="text-sm text-white hover:text-red-400"
+				>
+					Close
+				</button>
 			</div>
-		{/each}
-	</div>
-{/if}
 
-
+			{#each data.followingList as following}
+				<div class="mb-4 flex items-center justify-between">
+					<div class="flex items-center space-x-3">
+						<img
+							class="h-8 w-8 rounded-full object-cover"
+							src={following.profile_picture}
+							alt="Following user"
+							loading="lazy"
+						/>
+						<div>
+							<a href={`/api/profile/${following.username}`}>
+								<p class="text-sm text-white">{following.username}</p>
+							</a>
+						</div>
+					</div>
+					<a href={`/api/profile/${following.username}`}>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> Visit </button>
+					</a>
+				</div>
+			{/each}
+		</div>
+	{/if}
 </div>
-

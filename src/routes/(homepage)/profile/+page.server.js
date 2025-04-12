@@ -65,7 +65,7 @@ export async function load({ locals, fetch }) {
 		`,
 		[locals.user.id]
 	);
-	
+
 	const [followingList] = await connection.execute(
 		`
 		SELECT u.id, u.username, u.profile_picture
@@ -75,7 +75,7 @@ export async function load({ locals, fetch }) {
 		`,
 		[locals.user.id]
 	);
-	
+
 	return {
 		articles,
 		comments: rows,
@@ -84,8 +84,8 @@ export async function load({ locals, fetch }) {
 		likesSum,
 		countArticles,
 		followersPerUser,
-		followingPerUser, 
-		followersList, 
+		followingPerUser,
+		followersList,
 		followingList
 	}; // Pass ONLY articles
 }

@@ -63,7 +63,7 @@ export async function load({ params, fetch, locals }) {
 		[username]
 	);
 
-    const [followersList] = await connection.execute(
+	const [followersList] = await connection.execute(
 		`
 		SELECT u.id, u.username, u.profile_picture
 		FROM follows f
@@ -72,7 +72,7 @@ export async function load({ params, fetch, locals }) {
 		`,
 		[user_profile.id]
 	);
-	
+
 	const [followingList] = await connection.execute(
 		`
 		SELECT u.id, u.username, u.profile_picture
@@ -83,8 +83,6 @@ export async function load({ params, fetch, locals }) {
 		[user_profile.id]
 	);
 
-    
-
 	return {
 		user_profile,
 		articles,
@@ -92,11 +90,10 @@ export async function load({ params, fetch, locals }) {
 		countArticles,
 		isFollowing,
 		followersPerUser,
-		followingPerUser, 
-        followingList, 
-        followersList, 
-        user: locals.user
-
+		followingPerUser,
+		followingList,
+		followersList,
+		user: locals.user
 	};
 }
 
