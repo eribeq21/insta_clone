@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
-	let { form } = $props();
+	let { form, data } = $props();
+	let users = data.user;
 </script>
 
 <form
@@ -48,6 +49,15 @@
 						</div>
 					</div>
 
+					{#if users.username === user.username}
+					<!-- Username link -->
+					<a
+						href={`/profile`}
+						class="text-sm text-gray-800 transition hover:text-pink-500"
+					>
+						@{user.username}
+					</a>
+					{:else}
 					<!-- Username link -->
 					<a
 						href={`/api/profile/${user.username}`}
@@ -55,6 +65,7 @@
 					>
 						@{user.username}
 					</a>
+					{/if}
 				</div>
 			{/each}
 		{:else}

@@ -8,6 +8,7 @@
 	let followers = data.followersPerUser[0].follower_count;
 	let following = data.followingPerUser[0].following_count;
 	let isFollowing = data.isFollowing;
+	
 	let showFollowers = $state(false);
 	let showFollowing = $state(false);
 
