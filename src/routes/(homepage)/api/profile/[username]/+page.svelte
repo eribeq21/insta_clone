@@ -8,10 +8,11 @@
 	let followers = data.followersPerUser[0].follower_count;
 	let following = data.followingPerUser[0].following_count;
 	let isFollowing = data.isFollowing;
-	
+
 	let showFollowers = $state(false);
 	let showFollowing = $state(false);
 
+	let current_user = data.user;
 
 
 	
@@ -121,19 +122,37 @@
 						loading="lazy"
 					/>
 					<div>
+						{#if  current_user.username === following.username}
 
+						<a href={`/profile`} onclick={() => showFollowers = false}>
+
+							<p class="text-sm text-white">{follower.username}</p>
+						</a>
+						{:else}
 						<a href={`/profile/${follower.username}`} onclick={() => showFollowers = false}>
 
 							<p class="text-sm text-white">{follower.username}</p>
 						</a>
 
+						{/if}
+
 					</div>
 				</div>
+				{#if  current_user.username === follower.username}
+
+				<a href={`/profile`}  onclick={() => showFollowers = false}>
+					<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
+						You
+					</button>
+				</a>
+				{:else}
 				<a href={`/api/profile/${follower.username}`}  onclick={() => showFollowers = false}>
 					<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
 						Visit
 					</button>
 				</a>
+
+				{/if}
 				
 			</div>
 		{/each}
@@ -159,17 +178,32 @@
 						alt="Following user"
 						loading="lazy"
 					/>
+				{#if  current_user.username === following.username}
+				<div>
+					<a href={`/profile`} onclick={() => showFollowers = false}>
+						<p class="text-sm text-white">{following.username}</p>
+					</a>
+				</div>
+			<a href={`/profile`} onclick={() => showFollowing = false}>
+				<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
+					You
+				</button>
+			</a>
+					
+				{:else}
 					<div>
 						<a href={`/api/profile/${following.username}`} onclick={() => showFollowers = false}>
 							<p class="text-sm text-white">{following.username}</p>
 						</a>
 					</div>
-				</div>
 				<a href={`/api/profile/${following.username}`} onclick={() => showFollowing = false}>
 					<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
 						Visit
 					</button>
 				</a>
+				{/if}
+			</div>
+
 				
 			</div>
 		{/each}

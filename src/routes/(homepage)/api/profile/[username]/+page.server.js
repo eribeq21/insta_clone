@@ -94,7 +94,8 @@ export async function load({ params, fetch, locals }) {
 		followersPerUser,
 		followingPerUser, 
         followingList, 
-        followersList
+        followersList, 
+        user: locals.user
 
 	};
 }
