@@ -56,6 +56,26 @@ export async function load({ locals, fetch }) {
     `,
 		[locals.user.username]
 	);
+	const [followersList] = await connection.execute(
+		`
+		SELECT u.id, u.username, u.profile_picture
+		FROM follows f
+		JOIN users u ON u.id = f.follower_id
+		WHERE f.following_id = ?
+		`,
+		[locals.user.id]
+	);
+	
+	const [followingList] = await connection.execute(
+		`
+		SELECT u.id, u.username, u.profile_picture
+		FROM follows f
+		JOIN users u ON u.id = f.following_id
+		WHERE f.follower_id = ?
+		`,
+		[locals.user.id]
+	);
+	
 	return {
 		articles,
 		comments: rows,
@@ -64,6 +84,8 @@ export async function load({ locals, fetch }) {
 		likesSum,
 		countArticles,
 		followersPerUser,
-		followingPerUser
+		followingPerUser, 
+		followersList, 
+		followingList
 	}; // Pass ONLY articles
 }
