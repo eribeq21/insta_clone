@@ -1,12 +1,12 @@
 <script>
-	import { enhance } from "$app/forms";
+	import { enhance } from '$app/forms';
 	let { data, form } = $props();
 	let user = data.user_profile;
 	let articles = data.articles;
 	let profile = user.profile_picture;
 	let alleLikes = data.likesSum[0].votes;
 	let allPosts = data.countArticles[0].allArticles;
-	let followers  = data.followersPerUser[0].follower_count;
+	let followers = data.followersPerUser[0].follower_count;
 	let following = data.followingPerUser[0].following_count;
 
 	let isFollowing = data.isFollowing;
@@ -33,41 +33,40 @@
 				<!-- Username & Buttons -->
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
 					<p class="text-center text-2xl font-light sm:text-left">{user.username}</p>
-				
-					<div class="flex justify-center sm:justify-start">
 
+					<div class="flex justify-center sm:justify-start">
 						<!-- Follow / Unfollow Button -->
 						<form method="POST" action="?/toggleFollow" use:enhance>
 							<input type="hidden" name="following_id" value={user.id} />
-					
+
 							{#if isFollowing}
 								<button
 									type="submit"
-									class="rounded-full border border-gray-300 bg-white px-4 py-1 text-sm font-medium text-black hover:bg-gray-100 transition"
+									class="rounded-full border border-gray-300 bg-white px-4 py-1 text-sm font-medium text-black transition hover:bg-gray-100"
 								>
 									Unfollow
 								</button>
 							{:else}
 								<button
 									type="submit"
-									class="rounded-full bg-blue-500 px-4 py-1 text-sm font-medium hover:bg-blue-600 transition"
+									class="rounded-full bg-blue-500 px-4 py-1 text-sm font-medium transition hover:bg-blue-600"
 								>
 									Follow
 								</button>
 							{/if}
 						</form>
-						</div>
+					</div>
 				</div>
-				
 
 				<!-- Stats -->
 				<div class="flex gap-6 text-sm">
 					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
 					<p><span class="font-semibold">{following} </span> following</p>
-					<p><span class="font-semibold">{followers}</span> {followers === 1 ? 'follower' : 'followers'}</p>
-					
+					<p>
+						<span class="font-semibold">{followers}</span>
+						{followers === 1 ? 'follower' : 'followers'}
+					</p>
 				</div>
-			
 
 				<!-- Name + Bio -->
 				<div class="space-y-1 text-sm">

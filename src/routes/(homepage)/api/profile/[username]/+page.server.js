@@ -33,7 +33,8 @@ export async function load({ params, fetch, locals }) {
 
 	const isFollowing = followCheck.length > 0;
 
-    const [followersPerUser] = await connection.execute(`
+	const [followersPerUser] = await connection.execute(
+		`
         SELECT 
             u.id,
             u.username,
@@ -42,11 +43,12 @@ export async function load({ params, fetch, locals }) {
         FROM users u
         LEFT JOIN follows f ON u.id = f.following_id
         where u.username = ? 
-    `, [
-        username
-    ]);
+    `,
+		[username]
+	);
 
-    const [followingPerUser] = await connection.execute(`
+	const [followingPerUser] = await connection.execute(
+		`
         SELECT 
             u.id,
             u.username,
@@ -56,21 +58,18 @@ export async function load({ params, fetch, locals }) {
         LEFT JOIN follows f ON u.id = f.follower_id
         WHERE u.username = ?
         GROUP BY u.id
-    `, [
-        username
-    ]);
-    
-    
-
+    `,
+		[username]
+	);
 
 	return {
 		user_profile,
 		articles,
 		likesSum,
 		countArticles,
-		isFollowing, 
-        followersPerUser, 
-        followingPerUser
+		isFollowing,
+		followersPerUser,
+		followingPerUser
 	};
 }
 
@@ -103,6 +102,5 @@ export const actions = {
 		} catch (err) {
 			console.error('Follow toggle failed:', err);
 		}
-
 	}
 };

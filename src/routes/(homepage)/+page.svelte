@@ -73,9 +73,16 @@
 							/>
 						</div>
 					</div>
-					<a href={getAuthorProfileLink(article.author)}>
-						<p class="text-sm font-semibold text-white">{article.author}</p>
-					</a>
+
+					{#if data.user.username === article.author}
+						<a href="/profile">
+							<p class="text-sm font-semibold text-white">{article.author}</p>
+						</a>
+					{:else}
+						<a href={getAuthorProfileLink(article.author)}>
+							<p class="text-sm font-semibold text-white">{article.author}</p>
+						</a>
+					{/if}
 				</div>
 
 				<!-- Article Image -->
@@ -184,6 +191,8 @@
 
 			{#if seeAllusers === false}
 				{#each data.users.slice(0, 5) as user}
+				{#if user.username !== data.user.username}
+
 					<div class="mb-4 flex items-center justify-between">
 						<div class="flex items-center space-x-3">
 							<img
@@ -204,9 +213,12 @@
 							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
 						</a>
 					</div>
+					{/if}
 				{/each}
 			{:else}
 				{#each data.users as user}
+				{#if user.username !== data.user.username}
+
 					<div class="mb-4 flex items-center justify-between">
 						<div class="flex items-center space-x-3">
 							<img
@@ -227,6 +239,7 @@
 							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">Visit</button>
 						</a>
 					</div>
+					{/if}
 				{/each}
 			{/if}
 		</aside>
