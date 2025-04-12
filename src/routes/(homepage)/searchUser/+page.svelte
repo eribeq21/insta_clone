@@ -51,8 +51,8 @@
 
 					{#if users.username === user.username}
 						<!-- Username link -->
-						<a href={`/profile`} class="text-sm text-gray-800 transition hover:text-pink-500">
-							@{user.username}
+						<a href={`/profile`} class="text-sm text-blue-800 transition hover:text-pink-500">
+							@ you
 						</a>
 					{:else}
 						<!-- Username link -->
