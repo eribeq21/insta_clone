@@ -91,29 +91,29 @@
 				</div>
 
 				{#if showComments}
-						{#each data.comments.filter((comment) => comment.article_id === article.id) as comment (comment.id)}
-							<div class="mt-2 flex items-center space-x-2">
-								<div
-									class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
-								>
-						{#each data.users as  user}
-							{#if user.username === comment.name}
-									<img
-										class="h-6 w-6 rounded-full object-cover"
-										src={user.profile_picture}
-										alt={comment.name}
-										loading="lazy"
-									/>
+					{#each data.comments.filter((comment) => comment.article_id === article.id) as comment (comment.id)}
+						<div class="mt-2 flex items-center space-x-2">
+							<div
+								class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
+							>
+								{#each data.users as user}
+									{#if user.username === comment.name}
+										<img
+											class="h-6 w-6 rounded-full object-cover"
+											src={user.profile_picture}
+											alt={comment.name}
+											loading="lazy"
+										/>
 									{/if}
-						{/each}
-								</div>
-								<p class="text-sm text-white">
-									<span class="font-semibold">{comment.name}</span>
-									{comment.text}
-								</p>
+								{/each}
 							</div>
-						{/each}
-					{/if}
+							<p class="text-sm text-white">
+								<span class="font-semibold">{comment.name}</span>
+								{comment.text}
+							</p>
+						</div>
+					{/each}
+				{/if}
 
 				<form action="?/addComment" method="POST" use:enhance class="pt-3">
 					<input type="hidden" name="article_id" value={article.id} />

@@ -26,7 +26,6 @@ export async function load({ params, fetch, locals }) {
 		[locals.user.id]
 	);
 
-
 	const userLikes = userLikesRows.map((row) => row.article_id);
 	const [users] = await connection.execute('SELECT * FROM users;');
 
@@ -35,7 +34,7 @@ export async function load({ params, fetch, locals }) {
 		comments,
 		likes,
 		user: locals.user,
-		userLikes, 
+		userLikes,
 		users
 	};
 }

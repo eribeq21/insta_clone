@@ -1,9 +1,9 @@
 <script>
 	import { enhance } from '$app/forms';
 	let { data } = $props();
+
 	let user = data.user;
 
-	
 	let showComments = $state(false);
 	function showTheComments() {
 		showComments = !showComments;
@@ -52,6 +52,10 @@
 
 	function seeAll() {
 		seeAllusers = !seeAllusers;
+	}
+
+	function getFollowerCount(userId) {
+		return data.follows.filter((f) => f.following_id === userId).length;
 	}
 </script>
 
@@ -133,16 +137,16 @@
 								<div
 									class="rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
 								>
-						{#each data.users as  user}
-							{#if user.username === comment.name}
-									<img
-										class="h-6 w-6 rounded-full object-cover"
-										src={user.profile_picture}
-										alt={comment.name}
-										loading="lazy"
-									/>
-									{/if}
-						{/each}
+									{#each data.users as user}
+										{#if user.username === comment.name}
+											<img
+												class="h-6 w-6 rounded-full object-cover"
+												src={user.profile_picture}
+												alt={comment.name}
+												loading="lazy"
+											/>
+										{/if}
+									{/each}
 								</div>
 								<p class="text-sm text-white">
 									<span class="font-semibold">{comment.name}</span>
@@ -178,6 +182,7 @@
 			</div>
 		{/each}
 	</section>
+
 	<!-- Right Sidebar Section (Only visible on large screens) -->
 	<div class="space-y-3">
 		<aside class="sidebar m-7 hidden xl:block">
@@ -209,8 +214,14 @@
 									<a href={`api/profile/${user.username}`}>
 										<p class="text-sm text-white">{user.username}</p>
 									</a>
-
-									<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+									{#if getFollowerCount(user.id) === 0}
+										<p class="text-xs text-gray-400">No followers yet</p>
+									{:else}
+										<p class="text-xs text-gray-400">
+											Followed by {getFollowerCount(user.id)}
+											{getFollowerCount(user.id) === 1 ? 'user' : 'users'}
+										</p>
+									{/if}
 								</div>
 							</div>
 							<a href={`api/profile/${user.username}`}>
