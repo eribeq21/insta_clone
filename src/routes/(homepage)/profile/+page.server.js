@@ -87,5 +87,5 @@ export async function load({ locals, fetch }) {
 		followingPerUser,
 		followersList,
 		followingList
-	}; 
+	};
 }

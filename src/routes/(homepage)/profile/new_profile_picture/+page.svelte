@@ -47,15 +47,14 @@
 					<p class="font-medium text-green-400">Profile Picture successfully created</p>
 				</div>
 			{/if}
-			<div class="mt-6 flex justify-center w-full">
+			<div class="mt-6 flex w-full justify-center">
 				<a
 					href="/profile/new_profile_picture/bio"
-					class="rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+					class="rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
 				>
-					 Add something to your bio
+					Add something to your bio
 				</a>
 			</div>
 		</div>
 	</div>
-
 </main>

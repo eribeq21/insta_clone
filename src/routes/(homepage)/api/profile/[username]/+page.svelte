@@ -36,6 +36,9 @@
 				<!-- Username & Buttons -->
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
 					<p class="text-center text-2xl font-light sm:text-left">{user.username}</p>
+					{#if user.role === 'admin'}
+						<img src="/admin.png" alt="Admin" class="h-4 w-4" />
+					{/if}
 
 					<div class="flex justify-center sm:justify-start">
 						<!-- Follow / Unfollow Button -->
@@ -81,8 +84,7 @@
 
 				<!-- Name + Bio -->
 				<div class="space-y-1 text-sm">
-					<p class="font-semibold">{user.full_name}</p>
-					<p class="text-xs text-white-500">{user.bio}</p>
+					<p class="text-white-500 text-xs">{user.bio}</p>
 					<p class="text-xs text-gray-500">@All rights reserved from Eriseldi Zuckerberg</p>
 				</div>
 			</div>

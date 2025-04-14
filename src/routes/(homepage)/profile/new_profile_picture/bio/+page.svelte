@@ -12,12 +12,7 @@
 		<div class="h-full w-full rounded-2xl border border-gray-100 bg-black p-8">
 			<h1 class="mb-6 text-center text-3xl font-bold text-white">BIO</h1>
 
-			<form
-				action="?/bio_upload"
-				method="POST"
-				class="space-y-4"
-				use:enhance
-			>
+			<form action="?/bio_upload" method="POST" class="space-y-4" use:enhance>
 				<!-- File Upload Input -->
 				<label class="block">
 					<span class="font-medium text-gray-300">Write down a bio:</span>
@@ -28,7 +23,7 @@
 					/>
 				</label>
 
-                <!-- Description Input -->
+				<!-- Description Input -->
 				<input type="hidden" name="user_id" value={user.id} />
 				<!-- Submit Button -->
 				<button

@@ -10,7 +10,8 @@ export async function GET() {
 				a.description,
 				a.votes,
 				a.author,
-				u.profile_picture
+				u.profile_picture, 
+				u.role
 			FROM articles a
 			JOIN users u ON a.author = u.username
 			ORDER BY a.id DESC

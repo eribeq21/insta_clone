@@ -63,6 +63,9 @@
 							@{user.username}
 						</a>
 					{/if}
+					{#if user.role === 'admin'}
+						<img src="/admin.png" alt="Admin" class="h-4 w-4" />
+					{/if}
 				</div>
 			{/each}
 		{:else}
