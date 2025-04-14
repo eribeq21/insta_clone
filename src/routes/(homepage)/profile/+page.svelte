@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from "$app/forms";
 	let { data } = $props();
 	let user = data.user;
 	let articles = data.articles;
@@ -91,6 +92,7 @@
 				<!-- Name + Bio -->
 				<div class="space-y-1 text-sm">
 					<p class="font-semibold">{user.full_name}</p>
+					<p class="text-xs text-white-500">{user.bio}</p>
 					<p class="text-xs text-gray-500">@All rights reserved from Eriseldi Zuckerberg</p>
 				</div>
 			</div>

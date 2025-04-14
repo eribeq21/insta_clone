@@ -10,28 +10,26 @@
 <main class="flex h-screen items-center justify-center bg-black p-6 lg:ml-[220px]">
 	<div class="w-full max-w-md rounded-2xl bg-gray-100 p-[2px] shadow-xl">
 		<div class="h-full w-full rounded-2xl border border-gray-100 bg-black p-8">
-			<h1 class="mb-6 text-center text-3xl font-bold text-white">Change profile picture</h1>
+			<h1 class="mb-6 text-center text-3xl font-bold text-white">BIO</h1>
 
 			<form
-				action="?/upload"
+				action="?/bio_upload"
 				method="POST"
 				class="space-y-4"
 				use:enhance
-				enctype="multipart/form-data"
 			>
 				<!-- File Upload Input -->
 				<label class="block">
-					<span class="font-medium text-gray-300">Choose an Image:</span>
+					<span class="font-medium text-gray-300">Write down a bio:</span>
 					<input
-						type="file"
-						name="profile_picture"
+						type="text"
+						name="bio_text"
 						class="mt-2 block w-full cursor-pointer rounded-lg border border-gray-600 bg-black px-4 py-2 text-gray-300 shadow-sm transition-all file:mr-4 file:border-0 file:bg-gray-600 file:px-4 file:py-2 file:text-white file:hover:bg-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
 					/>
 				</label>
 
-				<!-- Description Input -->
+                <!-- Description Input -->
 				<input type="hidden" name="user_id" value={user.id} />
-
 				<!-- Submit Button -->
 				<button
 					type="submit"
@@ -44,18 +42,9 @@
 			<!-- Uploaded Image Preview -->
 			{#if form}
 				<div class="mt-6 flex flex-col items-center">
-					<p class="font-medium text-green-400">Profile Picture successfully created</p>
+					<p class="font-medium text-green-400">Bio successfully created</p>
 				</div>
 			{/if}
-			<div class="mt-6 flex justify-center w-full">
-				<a
-					href="/profile/new_profile_picture/bio"
-					class="rounded-lg bg-gray-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-				>
-					 Add something to your bio
-				</a>
-			</div>
 		</div>
 	</div>
-
 </main>
