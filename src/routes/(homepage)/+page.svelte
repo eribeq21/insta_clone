@@ -248,7 +248,14 @@
 										<p class="text-sm text-white">{user.username}</p>
 									</a>
 
-									<p class="text-xs text-gray-400">Followed by user_a + 3</p>
+									{#if getFollowerCount(user.id) === 0}
+										<p class="text-xs text-gray-400">No followers yet</p>
+									{:else}
+										<p class="text-xs text-gray-400">
+											Followed by {getFollowerCount(user.id)}
+											{getFollowerCount(user.id) === 1 ? 'user' : 'users'}
+										</p>
+									{/if}
 								</div>
 							</div>
 							<a href={`api/profile/${user.username}`}>
