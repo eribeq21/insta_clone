@@ -67,7 +67,7 @@
 				<li
 					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
 				>
-					<img class="h-9 w-9 object-cover" src="white_home.png" alt="" loading="lazy" />
+					<img class="h-9 w-9 object-cover" src="/white_home.png" alt="" loading="lazy" />
 					<a href="/" class="font-sans text-[19px]">Home</a>
 				</li>
 
@@ -75,7 +75,7 @@
 				<li
 					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
 				>
-					<img class="h-9 w-9 object-cover" src="search_icon.png" alt="" loading="lazy" />
+					<img class="h-9 w-9 object-cover" src="/search_icon.png" alt="" loading="lazy" />
 					<a href="/searchUser" class="font-sans text-[19px]">Search</a>
 				</li>
 
@@ -83,7 +83,7 @@
 				<li
 					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
 				>
-					<img class="h-9 w-9 object-cover" src="collage.png" alt="" loading="lazy" />
+					<img class="h-9 w-9 object-cover" src="/collage.png" alt="" loading="lazy" />
 					<a href="/admin/articles_management" class="font-sans text-[19px]">Posts</a>
 				</li>
 
