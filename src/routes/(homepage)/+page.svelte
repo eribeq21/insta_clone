@@ -255,10 +255,15 @@
 									loading="lazy"
 								/>
 								<div>
-									<a href={`api/profile/${user.username}`}>
-										<p class="text-sm text-white">{user.username}</p>
-									</a>
+									<div class="flex items-center space-x-1">
+										<a href={`api/profile/${user.username}`}>
+											<p class="text-sm text-white">{user.username}</p>
+										</a>
 
+										{#if user.role === 'admin'}
+											<img src="/admin.png" alt="Admin" class="h-4 w-4" />
+										{/if}
+									</div>
 									{#if getFollowerCount(user.id) === 0}
 										<p class="text-xs text-gray-400">No followers yet</p>
 									{:else}
