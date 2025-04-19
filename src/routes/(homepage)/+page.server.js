@@ -77,25 +77,19 @@ export const actions = {
 		try {
 			if (existing.length > 0) {
 				// User already liked the article — remove like
-				await connection.execute(
-					`DELETE FROM user_likes WHERE user_id = ? AND article_id = ?`,
-					[userId, articleId]
-				);
-				await connection.execute(
-					`UPDATE articles SET votes = votes - 1 WHERE id = ?`,
-					[articleId]
-				);
+				await connection.execute(`DELETE FROM user_likes WHERE user_id = ? AND article_id = ?`, [
+					userId,
+					articleId
+				]);
+				await connection.execute(`UPDATE articles SET votes = votes - 1 WHERE id = ?`, [articleId]);
 				return { isLiked: false };
 			} else {
 				// User hasn't liked the article yet — add like
-				await connection.execute(
-					`INSERT INTO user_likes (user_id, article_id) VALUES (?, ?)`,
-					[userId, articleId]
-				);
-				await connection.execute(
-					`UPDATE articles SET votes = votes + 1 WHERE id = ?`,
-					[articleId]
-				);
+				await connection.execute(`INSERT INTO user_likes (user_id, article_id) VALUES (?, ?)`, [
+					userId,
+					articleId
+				]);
+				await connection.execute(`UPDATE articles SET votes = votes + 1 WHERE id = ?`, [articleId]);
 				return { isLiked: true };
 			}
 		} catch (err) {

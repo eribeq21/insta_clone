@@ -87,10 +87,8 @@
 					<a href="/admin/articles_management" class="font-sans text-[19px]">Posts</a>
 				</li>
 
-				<!-- Profile Dropdown -->
-				<details class="group">
-					<summary
-						class="hover:bg-opacity-10 flex cursor-pointer list-none items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+					<div
+						class="hover:bg-opacity-10 flex cursor-pointer  items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
 					>
 						<div
 							class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
@@ -105,21 +103,9 @@
 							</div>
 						</div>
 						<a href="/profile" class="font-sans text-[19px]">Profile</a>
-					</summary>
+					</div>
 
-					<ul class="absolute right-0 z-50 mt-2 w-48 rounded-lg bg-white shadow-lg">
-						<form action="/logout?/deleteAccount" method="POST" class="mt-4" use:enhance>
-							<li class="cursor-pointer px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
-								<button
-									type="submit"
-									class="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600"
-								>
-									Delete Account
-								</button>
-							</li>
-						</form>
-					</ul>
-				</details>
+					
 			</ul>
 		</nav>
 	</section>

@@ -134,7 +134,10 @@
 									<p class="text-sm text-white">{follower.username}</p>
 								</a>
 							{:else}
-								<a href={`/api/profile/${follower.username}`} onclick={() => (showFollowers = false)}>
+								<a
+									href={`/api/profile/${follower.username}`}
+									onclick={() => (showFollowers = false)}
+								>
 									<p class="text-sm text-white">{follower.username}</p>
 								</a>
 							{/if}

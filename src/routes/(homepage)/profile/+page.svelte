@@ -71,6 +71,30 @@
 								>
 							</svg>
 						</button>
+						<details class="group relative">
+							<summary
+								class="flex cursor-pointer items-center gap-2 rounded-full bg-zinc-900 px-3 py-2 text-sm font-medium text-white shadow-md transition duration-200 hover:bg-zinc-800"
+								title="Settings"
+							>
+								<img src="/settings.png" alt="Settings" class="h-4 w-4 object-contain" />
+								<span>Settings</span>
+							</summary>
+
+							<ul
+								class="absolute right-0 z-50 mt-2 w-60 origin-top-right divide-y divide-gray-100 rounded-xl bg-white p-3 text-sm shadow-2xl ring-1 ring-black/5"
+							>
+								<form action="/logout?/deleteAccount" method="POST" use:enhance>
+									<li class="py-2">
+										<button
+											type="submit"
+											class="w-full rounded-lg bg-red-500 px-4 py-2 font-semibold text-white shadow-sm transition hover:bg-red-600 hover:shadow-md"
+										>
+											Delete Account
+										</button>
+									</li>
+								</form>
+							</ul>
+						</details>
 					</div>
 				</div>
 
