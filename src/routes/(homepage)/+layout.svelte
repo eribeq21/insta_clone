@@ -27,27 +27,11 @@
 			</li>
 			<!-- Profile with dropdown -->
 			<li class="relative flex flex-col items-center">
-				<details class="group">
-					<summary class="flex cursor-pointer list-none flex-col items-center">
+					<div class="flex cursor-pointer list-none flex-col items-center">
 						<a href="/profile" class="text-xs">Profile</a>
-						<span class="text-[10px]">▼</span>
-					</summary>
+					</div>
 
-					<ul
-						class="absolute right-0 bottom-10 z-50 mb-2 w-52 rounded-lg bg-white text-sm text-black shadow-lg"
-					>
-						<form action="/logout?/deleteAccount" method="POST">
-							<li class="px-4 py-2">
-								<button
-									type="submit"
-									class="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600"
-								>
-									Delete Account
-								</button>
-							</li>
-						</form>
-					</ul>
-				</details>
+					
 			</li>
 		</ul>
 	</nav>

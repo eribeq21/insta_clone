@@ -10,6 +10,7 @@
 	}
 
 	let likeStatus = $state({});
+	
 	function toggleLike(articleId) {
 		const current = isLiked(articleId);
 		likeStatus[articleId] = !current;

@@ -32,10 +32,12 @@
 			<div class="flex-1 space-y-4">
 				<!-- Username & Buttons -->
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+					<div class="flex justify-center items-center">
 					<p class="text-center text-2xl font-light sm:text-left">{user.username}</p>
 					{#if user.role === 'admin'}
-						<img src="/admin.png" alt="Admin" class="h-4 w-4" />
+						<img src="/admin.png" alt="Admin" class="h-4 w-4 ml-2 relative top-[3px]" />
 					{/if}
+				   </div>
 
 					<div class="flex gap-2">
 						<a href="/profile/new_profile_picture"
