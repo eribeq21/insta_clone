@@ -10,29 +10,35 @@
 >
 	<nav>
 		<ul class="flex justify-around text-white">
-			<li class="flex flex-col items-center">
-				<a href="/" class="flex flex-col items-center">
-					<span class="text-xs">Home</span>
-				</a>
-			</li>
-			<li class="flex flex-col items-center">
-				<a href="/searchUser" class="flex flex-col items-center">
-					<span class="text-xs">Search</span>
-				</a>
-			</li>
-			<li class="flex flex-col items-center">
-				<a href="/admin/articles_management" class="flex flex-col items-center">
-					<span class="text-xs">Posts</span>
-				</a>
-			</li>
-			<!-- Profile with dropdown -->
-			<li class="relative flex flex-col items-center">
-					<div class="flex cursor-pointer list-none flex-col items-center">
-						<a href="/profile" class="text-xs">Profile</a>
+			<a href="/"
+				><li class="flex flex-col items-center">
+					<div class="flex flex-col items-center">
+						<span class="text-xs">Home</span>
 					</div>
+				</li>
+			</a>
+			<a href="/searchUser">
+				<li class="flex flex-col items-center">
+					<div class="flex flex-col items-center">
+						<span class="text-xs">Search</span>
+					</div>
+				</li>
+			</a>
+			<a href="/admin/articles_management">
+				<li class="flex flex-col items-center">
+					<div class="flex flex-col items-center">
+						<span class="text-xs">Posts</span>
+					</div>
+				</li></a
+			>
 
-					
-			</li>
+			<a href="/profile">
+				<li class="relative flex flex-col items-center">
+					<div class="flex cursor-pointer list-none flex-col items-center">
+						<span class="text-xs">Profile</span>
+					</div>
+				</li>
+			</a>
 		</ul>
 	</nav>
 </section>
@@ -42,37 +48,45 @@
 	<section
 		class="hidden h-full w-[245px] border-r-[1px] border-r-zinc-800 bg-black px-3 py-6 lg:fixed lg:block"
 	>
-		<div class="px-2 py-3">
-			<a href="/"><h1 class="font-logo mb-2 text-4xl text-white">ShkodraWeb</h1></a>
-		</div>
+		<a href="/"
+			><div class="px-2 py-3">
+				<h1 class="font-logo mb-2 text-4xl text-white">ShkodraWeb</h1>
+			</div>
+		</a>
 		<nav>
 			<ul class="flex h-full flex-col justify-between py-7 text-base text-white">
 				<!-- Home -->
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
-				>
-					<img class="h-9 w-9 object-cover" src="/white_home.png" alt="" loading="lazy" />
-					<a href="/" class="font-sans text-[19px]">Home</a>
-				</li>
+				<a href="/">
+					<li
+						class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+					>
+						<img class="h-9 w-9 object-cover" src="/white_home.png" alt="" loading="lazy" />
+						<div class="font-sans text-[19px]">Home</div>
+					</li>
+				</a>
 
 				<!-- Search -->
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
-				>
-					<img class="h-9 w-9 object-cover" src="/search_icon.png" alt="" loading="lazy" />
-					<a href="/searchUser" class="font-sans text-[19px]">Search</a>
-				</li>
+				<a href="/searchUser">
+					<li
+						class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+					>
+						<img class="h-9 w-9 object-cover" src="/search_icon.png" alt="" loading="lazy" />
+						<div class="font-sans text-[19px]">Search</div>
+					</li>
+				</a>
 
 				<!-- Articles -->
-				<li
-					class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
-				>
-					<img class="h-9 w-9 object-cover" src="/collage.png" alt="" loading="lazy" />
-					<a href="/admin/articles_management" class="font-sans text-[19px]">Posts</a>
-				</li>
-
+				<a href="/admin/articles_management">
+					<li
+						class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+					>
+						<img class="h-9 w-9 object-cover" src="/collage.png" alt="" loading="lazy" />
+						<div class="font-sans text-[19px]">Posts</div>
+					</li>
+				</a>
+				<a href="/profile">
 					<div
-						class="hover:bg-opacity-10 flex cursor-pointer  items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
+						class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
 					>
 						<div
 							class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
@@ -86,10 +100,9 @@
 								/>
 							</div>
 						</div>
-						<a href="/profile" class="font-sans text-[19px]">Profile</a>
+						<div class="font-sans text-[19px]">Profile</div>
 					</div>
-
-					
+				</a>
 			</ul>
 		</nav>
 	</section>

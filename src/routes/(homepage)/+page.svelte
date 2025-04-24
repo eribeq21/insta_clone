@@ -10,7 +10,7 @@
 	}
 
 	let likeStatus = $state({});
-	
+
 	function toggleLike(articleId) {
 		const current = isLiked(articleId);
 		likeStatus[articleId] = !current;
@@ -190,7 +190,7 @@
 
 	<!-- Right Sidebar Section (Only visible on large screens) -->
 	<div class="space-y-3">
-		<aside class="sidebar m-7 hidden xl:block">
+		<aside class="sidebar m-7 hidden max-h-[90vh] overflow-y-auto pr-2 xl:block">
 			<div class="py-3">
 				<div class="flex items-center justify-between">
 					<span class="font-semibold text-gray-400">Suggestions for you</span>

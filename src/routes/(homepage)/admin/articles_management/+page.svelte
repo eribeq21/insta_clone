@@ -29,7 +29,6 @@
 
 					<!-- Content -->
 					<div class="p-4">
-						<p class="mb-1 text-xs text-gray-500">ID: {article.id}</p>
 						<p class="mb-1 text-lg font-semibold text-white">{article.author}</p>
 						<p class="mb-4 text-sm text-gray-300">{article.description}</p>
 

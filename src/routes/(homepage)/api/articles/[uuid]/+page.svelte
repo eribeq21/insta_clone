@@ -35,6 +35,21 @@
 
 <section class="main-content flex-1 lg:ml-[245px]">
 	<div class="mx-auto flex max-w-screen-lg flex-col bg-black p-4 md:flex-row md:border">
+		<div class="mb-4 flex flex-row items-center gap-3 md:hidden">
+			<div
+				class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
+			>
+				<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-black bg-white">
+					<img
+						class="h-full w-full object-cover"
+						src={article.profile_picture}
+						alt={data.article.author}
+					/>
+				</div>
+			</div>
+			<p class="text-sm font-semibold text-white">{data.article.author}</p>
+		</div>
+
 		<!-- Article Image -->
 		<div class="md:w-1/2 md:pr-4">
 			<img class="h-full w-full rounded-lg object-cover" src={data.article.image} alt="" />
@@ -43,7 +58,7 @@
 		<!-- Article Content -->
 		<div class="md:w-1/2 md:pl-4">
 			<!-- Article Header -->
-			<div class="mb-4 flex flex-row items-center gap-3">
+			<div class="mb-4 hidden flex-row items-center gap-3 md:flex">
 				<div
 					class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
 				>

@@ -32,14 +32,14 @@
 			<div class="flex-1 space-y-4">
 				<!-- Username & Buttons -->
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-					<div class="flex justify-center items-center">
-					<p class="text-center text-2xl font-light sm:text-left">{user.username}</p>
-					{#if user.role === 'admin'}
-						<img src="/admin.png" alt="Admin" class="h-4 w-4 ml-2 relative top-[3px]" />
-					{/if}
-				   </div>
+					<div class="flex items-center justify-center">
+						<p class="text-center text-2xl font-light sm:text-left">{user.username}</p>
+						{#if user.role === 'admin'}
+							<img src="/admin.png" alt="Admin" class="relative top-[3px] ml-2 h-4 w-4" />
+						{/if}
+					</div>
 
-					<div class="flex gap-2">
+					<div class="flex items-center justify-center gap-2">
 						<a href="/profile/new_profile_picture"
 							><button
 								class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white transition hover:bg-zinc-700"
@@ -101,7 +101,7 @@
 				</div>
 
 				<!-- Stats -->
-				<div class="flex gap-6 text-sm">
+				<div class="flex items-center justify-center gap-6 text-sm sm:items-start sm:justify-start">
 					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
 					<p
 						onclick={() => (showFollowing = !showFollowing)}
@@ -119,9 +119,11 @@
 				</div>
 
 				<!-- Name + Bio -->
-				<div class="space-y-1 text-sm">
-					<p class="text-white-500 text-xs">{user.bio}</p>
-					<p class="text-xs text-gray-500">@All rights reserved from Eriseldi Zuckerberg</p>
+				<div class="text-sm sm:block sm:space-y-1">
+					<p class="text-center text-xs text-white sm:text-left">{user.bio}</p>
+					<p class="text-center text-xs text-gray-500 sm:text-left">
+						@All rights reserved from Eriseldi Zuckerberg
+					</p>
 				</div>
 			</div>
 		</div>
