@@ -3,9 +3,10 @@ import { redirect, error } from '@sveltejs/kit';
 import { put } from '@vercel/blob';
 import { BLOB_READ_WRITE_TOKEN } from '$env/static/private';
 export async function load({ locals, fetch }) {
-	if (!locals.user || locals.user.role !== 'admin') {
-		throw redirect(302, '/login');
+	if (!locals.user) {
+		redirect(302, '/login');
 	}
+
 	const connection = await createConnection();
 	const [rows] = await connection.execute('SELECT * FROM users;');
 

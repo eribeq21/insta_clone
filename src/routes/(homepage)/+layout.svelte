@@ -24,7 +24,7 @@
 					</div>
 				</li>
 			</a>
-			<a href="/admin/articles_management">
+			<a href={user.role === 'admin' ? '/admin/articles_management' : '/users/articles_management'}>
 				<li class="flex flex-col items-center">
 					<div class="flex flex-col items-center">
 						<span class="text-xs">Posts</span>
@@ -76,7 +76,9 @@
 				</a>
 
 				<!-- Articles -->
-				<a href="/admin/articles_management">
+				<a
+					href={user.role === 'admin' ? '/admin/articles_management' : '/users/articles_management'}
+				>
 					<li
 						class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
 					>

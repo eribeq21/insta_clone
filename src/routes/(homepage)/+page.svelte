@@ -4,9 +4,9 @@
 
 	let user = data.user;
 
-	let showComments = $state(false);
-	function showTheComments() {
-		showComments = !showComments;
+	let showComments = $state({});
+	function showTheComments(articleId) {
+		showComments[articleId] = !showComments[articleId];
 	}
 
 	let likeStatus = $state({});
@@ -126,9 +126,9 @@
 					<div>
 						<button
 							class="cursor-pointer text-gray-500 focus:outline-none"
-							onclick={showTheComments}
+							onclick={() => showTheComments(article.id)}
 						>
-							{#if showComments}
+							{#if showComments[article.id]}
 								Hide comments
 							{:else}
 								View all {countComments(article.id)} comments
@@ -136,7 +136,7 @@
 						</button>
 					</div>
 
-					{#if showComments}
+					{#if showComments[article.id]}
 						{#each data.comments.filter((comment) => comment.article_id === article.id) as comment (comment.id)}
 							<div class="mt-2 flex items-center space-x-2">
 								<div
@@ -190,7 +190,7 @@
 
 	<!-- Right Sidebar Section (Only visible on large screens) -->
 	<div class="space-y-3">
-		<aside class="sidebar m-7 hidden max-h-[90vh] overflow-y-auto pr-2 xl:block ">
+		<aside class="sidebar m-7 hidden max-h-[90vh] overflow-y-auto pr-2 xl:block">
 			<div class="py-3">
 				<div class="flex items-center justify-between">
 					<span class="font-semibold text-gray-400">Suggestions for you</span>
