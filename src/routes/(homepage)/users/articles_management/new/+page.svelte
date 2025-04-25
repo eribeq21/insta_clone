@@ -4,14 +4,14 @@
 	import { upload } from '@vercel/blob/client';
 
 	let { form, data } = $props();
-	let user = data.user;
+	let user = data.user; // Storing the user information
 </script>
-
+<!-- This is only for users and != for admin -->
 <main class="flex h-screen items-center justify-center bg-black p-6 lg:ml-[220px]">
 	<div class="w-full max-w-md rounded-2xl bg-gray-100 p-[2px] shadow-xl">
 		<div class="h-full w-full rounded-2xl border border-gray-100 bg-black p-8">
 			<h1 class="mb-6 text-center text-3xl font-bold text-white">Post a new Image</h1>
-
+			<!-- Form to upload image and add description -->
 			<form
 				action="?/upload"
 				method="POST"

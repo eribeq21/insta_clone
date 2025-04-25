@@ -3,7 +3,7 @@
 	import { slide } from 'svelte/transition';
 	let { data } = $props();
 </script>
-
+<!-- This is only for users and != for admin -->
 <section class="flex-1 lg:ml-[220px]">
 	<div class="mx-auto min-h-screen flex-grow bg-black p-6 text-white shadow-lg">
 		<!-- Header -->

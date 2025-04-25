@@ -1,7 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
-	import Warning from '$lib/components/Warning.svelte';
-	let { form } = $props();
+	import Warning from '$lib/components/Warning.svelte';  // Custom warning message component
+	let { form } = $props(); // Access form data
 </script>
 
 <div class="flex min-h-screen flex-col items-center justify-center bg-gray-100">
@@ -13,6 +13,7 @@
 		class="w-full max-w-sm border border-gray-300 bg-white px-10 py-8 text-center"
 	>
 		<h1 class="font-logo mb-6 text-4xl">ShkodraWeb</h1>
+		<!-- Email/Username input -->
 
 		<input
 			type="text"
@@ -22,6 +23,7 @@
 			required
 			class="mb-3 w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 focus:border-gray-400 focus:outline-none"
 		/>
+		<!-- Password input -->
 
 		<input
 			type="password"
@@ -31,6 +33,7 @@
 			required
 			class="mb-4 w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 focus:border-gray-400 focus:outline-none"
 		/>
+		<!-- Submit button -->
 
 		<button
 			type="submit"
@@ -38,10 +41,11 @@
 		>
 			Log in
 		</button>
-
+		<!-- Forgot password link -->
 		<p class="mt-3 text-sm text-gray-500">
 			<a href="/forgot_password" class="text-blue-500 hover:underline">Forgot password?</a>
 		</p>
+		<!-- Show warning if login fails -->
 
 		{#if form}
 			<Warning message={form.message} />
@@ -59,6 +63,7 @@
 </div>
 
 <style>
+	/* Custom font for the logo */
 	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
 	.font-logo {

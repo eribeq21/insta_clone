@@ -2,31 +2,37 @@
 	import { enhance } from '$app/forms';
 
 	let { data } = $props();
-	let article = data.article;
-	let user = data.user;
-	let users = data.users;
+	let article = data.article; // Extract the article data
+	let user = data.user; // Extract the current user data
+	let users = data.users; // Extract the list of users for displaying profile pictures
 
-	let showComments = $state(false);
-	let likeStatus = $state({});
+	let showComments = $state(false); // State to toggle visibility of comments
+	let likeStatus = $state({}); // State to track like status for each article
 
+	// Toggle the visibility of comments when the button is clicked
 	function showTheComments() {
 		showComments = !showComments;
 	}
+
+    // Toggle the like status for a specific article
 
 	function toggleLike(articleId) {
 		const current = isLiked(articleId);
 		likeStatus[articleId] = !current;
 	}
 
+	// Check if an article is liked by the current user
 	function isLiked(articleId) {
 		if (likeStatus[articleId] !== undefined) return likeStatus[articleId];
 		return data.userLikes.includes(articleId);
 	}
-
+    
+	// Count the number of comments for a specific article
 	function countComments(articleId) {
 		return data.comments.filter((c) => c.article_id === articleId).length;
 	}
 
+	// Count the number of likes for a specific article
 	function countLikes(articleId) {
 		const found = data.likes.find((like) => like.id === articleId);
 		return found ? found.votes : 0;
@@ -35,6 +41,7 @@
 
 <section class="main-content flex-1 lg:ml-[245px]">
 	<div class="mx-auto flex max-w-screen-lg flex-col bg-black p-4 md:flex-row md:border">
+		 <!-- Article author section (only visible on mobile) -->
 		<div class="mb-4 flex flex-row items-center gap-3 md:hidden">
 			<div
 				class="h-11 w-11 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-red-500 p-0.5"
@@ -88,6 +95,7 @@
 					</form>
 					<p class="font-semibold text-white">{countLikes(data.article.id)} likes</p>
 				</div>
+               <!-- Article Description Section -->
 
 				<div>
 					<p class="text-white">
@@ -95,6 +103,8 @@
 						{data.article.description}
 					</p>
 				</div>
+
+				 <!-- Toggle Comments Section -->
 				<div>
 					<button class="cursor-pointer text-gray-500 focus:outline-none" onclick={showTheComments}>
 						{#if showComments}
@@ -104,7 +114,7 @@
 						{/if}
 					</button>
 				</div>
-
+              <!-- Display Comments (if visible) -->
 				{#if showComments}
 					{#each data.comments.filter((comment) => comment.article_id === article.id) as comment (comment.id)}
 						<div class="mt-2 flex items-center space-x-2">
@@ -130,6 +140,7 @@
 					{/each}
 				{/if}
 
+				<!-- Add a New Comment Form -->
 				<form action="?/addComment" method="POST" use:enhance class="pt-3">
 					<input type="hidden" name="article_id" value={article.id} />
 					<input type="hidden" name="name" value={user.username} />

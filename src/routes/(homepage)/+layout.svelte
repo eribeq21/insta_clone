@@ -1,7 +1,8 @@
 <script>
 	import { enhance } from '$app/forms';
-	let { data, children } = $props();
-	let user = data.user;
+	let { data, children } = $props(); // Destructure data and children from props passed to this layout
+	let user = data.user; 	// Extract user data from the passed data 
+
 </script>
 
 <!-- Mobile Navbar Section -->
@@ -10,6 +11,7 @@
 >
 	<nav>
 		<ul class="flex justify-around text-white">
+			<!-- Home link -->
 			<a href="/"
 				><li class="flex flex-col items-center">
 					<div class="flex flex-col items-center">
@@ -17,6 +19,7 @@
 					</div>
 				</li>
 			</a>
+			<!-- Search User link -->
 			<a href="/searchUser">
 				<li class="flex flex-col items-center">
 					<div class="flex flex-col items-center">
@@ -24,6 +27,7 @@
 					</div>
 				</li>
 			</a>
+			<!-- Posts link, conditional based on user role (admin or regular user) -->
 			<a href={user.role === 'admin' ? '/admin/articles_management' : '/users/articles_management'}>
 				<li class="flex flex-col items-center">
 					<div class="flex flex-col items-center">
@@ -31,7 +35,7 @@
 					</div>
 				</li></a
 			>
-
+			<!-- Profile link -->
 			<a href="/profile">
 				<li class="relative flex flex-col items-center">
 					<div class="flex cursor-pointer list-none flex-col items-center">
@@ -48,6 +52,7 @@
 	<section
 		class="hidden h-full w-[245px] border-r-[1px] border-r-zinc-800 bg-black px-3 py-6 lg:fixed lg:block"
 	>
+		<!-- Brand Logo and Home Link -->
 		<a href="/"
 			><div class="px-2 py-3">
 				<h1 class="font-logo mb-2 text-4xl text-white">ShkodraWeb</h1>
@@ -75,7 +80,7 @@
 					</li>
 				</a>
 
-				<!-- Articles -->
+				<!-- Posts link in Sidebar, conditional based on user role (admin or regular user) -->
 				<a
 					href={user.role === 'admin' ? '/admin/articles_management' : '/users/articles_management'}
 				>
@@ -86,6 +91,7 @@
 						<div class="font-sans text-[19px]">Posts</div>
 					</li>
 				</a>
+				<!-- Profile link in Sidebar -->
 				<a href="/profile">
 					<div
 						class="hover:bg-opacity-10 flex cursor-pointer items-center space-x-4 rounded-3xl px-3 py-2 hover:bg-gray-500"
@@ -117,6 +123,7 @@
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+	/* Custom font for the logo */
 	.font-logo {
 		font-family: 'Grand Hotel', cursive;
 	}

@@ -1,8 +1,12 @@
 import { createConnection } from '$lib/db/mysql';
 
+
+// GET function to fetch articles from the database
 export async function GET() {
 	try {
+		// Establish connection to the MySQL database
 		const connection = await createConnection();
+		// Execute a query to retrieve articles along with author information (username, profile picture, role)
 		const [rows] = await connection.execute(`
 			SELECT 
 				a.id,
@@ -17,10 +21,12 @@ export async function GET() {
 			ORDER BY a.id DESC
 		`);
 		/*
-		 So insted of listing them by votes I  thought it would be better 
-		 to list them based on their id because so the newest picture would 
-		 be shown to the landpage.Alternative sql query to list them with likes would be:
-		 SELECT 
+			Alternative approach to ordering the articles:
+			Instead of listing the articles by their IDs (which shows the most recent articles first),
+			you could order them based on their vote count (likes), as shown below.
+			This alternative query would show the most popular articles, instead of the latest.
+			To list by votes:
+			SELECT 
 				a.id,
 				a.image,
 				a.description,
@@ -31,12 +37,16 @@ export async function GET() {
 			FROM articles a
 			JOIN users u ON a.author = u.username
 			ORDER BY a.votes DESC limit 25
-*/
+		*/
+
+
+		// Return the list of articles as a JSON response
 		return new Response(JSON.stringify({ articles: rows }), {
 			status: 200,
 			headers: { 'Content-Type': 'application/json' }
 		});
 	} catch (error) {
+		// If an error occurs during the database query, return a 500 error response
 		return new Response(JSON.stringify({ error: 'Database query failed' }), {
 			status: 500,
 			headers: { 'Content-Type': 'application/json' }

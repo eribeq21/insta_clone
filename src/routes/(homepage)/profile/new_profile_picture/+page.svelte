@@ -4,14 +4,17 @@
 	import { upload } from '@vercel/blob/client';
 
 	let { form, data } = $props();
-	let user = data.user;
-</script>
+	let user = data.user; 	// Extract the currently logged-in user from the data
 
+</script>
+<!-- Main wrapper centered on the screen -->
 <main class="flex h-screen items-center justify-center bg-black p-6 lg:ml-[220px]">
+	<!-- Card container for the upload form -->
 	<div class="w-full max-w-md rounded-2xl bg-gray-100 p-[2px] shadow-xl">
 		<div class="h-full w-full rounded-2xl border border-gray-100 bg-black p-8">
+				<!-- Page title -->
 			<h1 class="mb-6 text-center text-3xl font-bold text-white">Change profile picture</h1>
-
+			<!-- Form to upload a new profile picture -->
 			<form
 				action="?/upload"
 				method="POST"
@@ -47,6 +50,7 @@
 					<p class="font-medium text-green-400">Profile Picture successfully created</p>
 				</div>
 			{/if}
+			<!-- Link to edit user bio  -->
 			<div class="mt-6 flex w-full justify-center">
 				<a
 					href="/profile/new_profile_picture/bio"

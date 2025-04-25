@@ -1,17 +1,21 @@
 <script>
-	let { data, form } = $props();
-	let user = data.user_profile;
-	let articles = data.articles;
-	let profile = user.profile_picture;
-	let alleLikes = data.likesSum[0].votes;
-	let allPosts = data.countArticles[0].allArticles;
-	let followers = data.followersPerUser[0].follower_count;
-	let following = data.followingPerUser[0].following_count;
-	let isFollowing = data.isFollowing;
+	let { data, form } = $props(); 	// Data coming from the page props
 
+	let user = data.user_profile;  // User's profile data
+	let articles = data.articles; // List of articles posted by the user
+	let profile = user.profile_picture;  // URL of the user's profile picture
+	let alleLikes = data.likesSum[0].votes;  // Total number of likes for the user
+	let allPosts = data.countArticles[0].allArticles; // Total number of posts by the user
+	let followers = data.followersPerUser[0].follower_count; // Number of followers
+	let following = data.followingPerUser[0].following_count; // Number of users the user is following
+	
+	let isFollowing = data.isFollowing; // Whether the current logged in user is following this user he is visiting  or not
+
+	// States for showing followers/following lists
 	let showFollowers = $state(false);
 	let showFollowing = $state(false);
 
+	// Current user data
 	let current_user = data.user;
 </script>
 
@@ -109,6 +113,7 @@
 		</div>
 	</div>
 
+		<!-- Followers IF section -->
 	{#if showFollowers}
 		<div
 			class="fixed top-0 right-0 z-50 h-full w-full max-w-sm overflow-y-auto border-zinc-800 bg-zinc-900 p-6 shadow-xl sm:rounded-l-2xl sm:border-l"
@@ -122,7 +127,7 @@
 					Close
 				</button>
 			</div>
-
+			<!-- Display Followers List -->
 			{#each data.followersList as follower}
 				<div class="mb-4 flex items-center justify-between">
 					<div class="flex items-center space-x-3">
@@ -174,6 +179,7 @@
 					Close
 				</button>
 			</div>
+			<!-- Display Following List -->
 
 			{#each data.followingList as following}
 				<div class="mb-4 flex items-center justify-between">
