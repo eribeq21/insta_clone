@@ -33,6 +33,7 @@
 		<h3 class="border-b pb-2 text-base font-semibold text-gray-700">Results</h3>
 
 		{#if form.users.length > 0}
+		<div class="max-h-60 overflow-y-auto">
 			{#each form.users as user}
 				<div class="flex items-center gap-3">
 					<!-- Profile ring effect (like IG stories) -->
@@ -68,6 +69,7 @@
 					{/if}
 				</div>
 			{/each}
+		</div>
 		{:else}
 			<p class="text-sm text-gray-500 italic">No users found.</p>
 		{/if}
