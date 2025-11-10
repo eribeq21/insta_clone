@@ -1,6 +1,8 @@
+import { sequence } from '@sveltejs/kit/hooks';
+import { paraglideMiddleware } from '$lib/paraglide/server';
 import { createConnection } from '$lib/db/mysql';
 
-export const handle = async ({ event, resolve }) => {
+const originalHandle = async ({ event, resolve }) => {
 	// get cookies from browser
 	const session = event.cookies.get('session');
 
@@ -12,18 +14,26 @@ export const handle = async ({ event, resolve }) => {
 	// find the user based on the session
 	const db = await createConnection();
 	const [users] = await db.execute('SELECT * FROM users WHERE session_token = ?', [session]);
+
 	if (users.length === 0) {
 		// if no user is found remove the session cookie
-		event.cookies.set('session', '', {
-			path: '/',
-			maxAge: -1
-		});
+		event.cookies.set('session', '', { path: '/', maxAge: -1 });
 		return await resolve(event);
 	}
 
 	// if `user` exists set `events.local`
 	event.locals.user = users[0];
-
 	// load page as normal
 	return await resolve(event);
 };
+
+const handleParaglide = ({ event, resolve }) =>
+	paraglideMiddleware(event.request, ({ request, locale }) => {
+		event.request = request;
+
+		return resolve(event, {
+			transformPageChunk: ({ html }) => html.replace('%paraglide.lang%', locale)
+		});
+	});
+
+export const handle = sequence(originalHandle, handleParaglide);

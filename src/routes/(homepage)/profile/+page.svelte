@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	let { data } = $props();
+	
 	// User data and stats
 	let user = data.user; // The current logged-in user's data  
 	let articles = data.articles; // All articles (posts) created by this user
@@ -64,7 +65,8 @@
 						</form>
 
  						<!-- Admin Article Management (Plus Icon) -->
-						<button class="rounded-full bg-zinc-800 p-2 transition hover:bg-zinc-700">
+						<button class="rounded-full bg-zinc-800 p-2 transition hover:bg-zinc-700"   aria-label="Go to articles management"
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								class="h-5 w-5 text-white"
@@ -72,7 +74,8 @@
 								viewBox="0 0 24 24"
 								stroke="currentColor"
 							>
-							<a href={user.role === 'admin' ? '/admin/articles_management' : '/users/articles_management'}>
+							<a href={user.role === 'admin' ? '/admin/articles_management' : '/users/articles_management'}   aria-label="Go to articles management"
+							>
 								<path
 										stroke-linecap="round"
 										stroke-linejoin="round"

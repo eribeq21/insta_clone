@@ -1,15 +1,20 @@
 <script>
+	import { updated } from '$app/state';
+	import { enhance } from '$app/forms';
+
 	let { data, form } = $props(); 	// Data coming from the page props
 
 	let user = data.user_profile;  // User's profile data
 	let articles = data.articles; // List of articles posted by the user
 	let profile = user.profile_picture;  // URL of the user's profile picture
-	let alleLikes = data.likesSum[0].votes;  // Total number of likes for the user
-	let allPosts = data.countArticles[0].allArticles; // Total number of posts by the user
-	let followers = data.followersPerUser[0].follower_count; // Number of followers
-	let following = data.followingPerUser[0].following_count; // Number of users the user is following
+	let alleLikes = $state(data.likesSum[0].votes);  // Total number of likes for the user
+	let allPosts = $state(data.countArticles[0].allArticles); // Total number of posts by the user
+	let followers = $state(data.followersPerUser[0].follower_count); // Number of followers
+	let following = $state(data.followingPerUser[0].following_count); // Number of users the user is following
+
+
 	
-	let isFollowing = data.isFollowing; // Whether the current logged in user is following this user he is visiting  or not
+	let isFollowing = $state(data.isFollowing); // Whether the current logged in user is following this user he is visiting  or not
 
 	// States for showing followers/following lists
 	let showFollowers = $state(false);
@@ -48,7 +53,14 @@
 
 					<div class="flex justify-center sm:justify-start">
 						<!-- Follow / Unfollow Button -->
-						<form method="POST" action="?/toggleFollow">
+						<form method="POST" action="?/toggleFollow" use:enhance={() =>{
+							return async ({ update }) => {
+								await update({reset: false});
+								isFollowing = !isFollowing;
+								followers = data.followersPerUser[0].follower_count;
+
+							}
+						}}>
 							<input type="hidden" name="following_id" value={user.id} />
 
 							{#if isFollowing}
@@ -193,7 +205,7 @@
 						<div>
 							{#if current_user.username === following.username}
 								<a href={`/profile`} onclick={() => (showFollowers = false)}>
-									<p class="text-sm text-white">{following.username}</p>
+									<p class="text-sm text-white">You</p>
 								</a>
 							{:else}
 								<a
@@ -205,25 +217,18 @@
 							{/if}
 						</div>
 					</div>
+					
 					{#if current_user.username === following.username}
-						<a href={`/profile`} onclick={() => (showFollowing = false)}>
-							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> You </button>
-						</a>
-					{:else}
-						<div>
-							<a
-								href={`/api/profile/${following.username}`}
-								onclick={() => (showFollowers = false)}
-							>
-								<p class="text-sm text-white">{following.username}</p>
-							</a>
-						</div>
-						<a href={`/api/profile/${following.username}`} onclick={() => (showFollowing = false)}>
-							<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
-								Visit
-							</button>
-						</a>
-					{/if}
+					<a href={`/profile`} onclick={() => (showFollowers = false)}>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> You </button>
+					</a>
+				{:else}
+					<a href={`/api/profile/${following.username}`} onclick={() => (showFollowers = false)}>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400">
+							Visit
+						</button>
+					</a>
+				{/if}
 				</div>
 			{/each}
 		</div>
