@@ -1,5 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
+	import { m } from '$lib/paraglide/messages.js';
+	import { setLocale } from '$lib/paraglide/runtime';
 	let { data } = $props();
 	
 	// User data and stats
@@ -52,7 +54,7 @@
 							><button
 								class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white transition hover:bg-zinc-700"
 							>
-								Edit profile
+								{m.edit_profile()}
 							</button></a
 						>
 						<!-- Logout -->
@@ -60,7 +62,7 @@
 							<button
 								type="submit"
 								class="rounded-lg bg-zinc-800 px-4 py-1.5 text-sm text-white transition hover:bg-zinc-700"
-								>Log Out</button
+								>{m.log_out()}</button
 							>
 						</form>
 
@@ -93,19 +95,58 @@
 								title="Settings"
 							>
 								<img src="/settings.png" alt="Settings" class="h-4 w-4 object-contain" />
-								<span>Settings</span>
+								<span>{m.settings()}</span>
 							</summary>
-							<!-- Settings Menu: Delete Account -->
+							<!-- Settings Menu: Language Selection & Delete Account -->
 							<ul
 								class="absolute right-0 z-50 mt-2 w-60 origin-top-right divide-y divide-gray-100 rounded-xl bg-white p-3 text-sm shadow-2xl ring-1 ring-black/5"
 							>
+								<!-- Language Selection Section -->
+								<li class="py-2">
+									<div class="mb-2">
+										<p class="mb-2 font-semibold text-gray-700">{m.language()}</p>
+										<div class="flex flex-wrap gap-2">
+											<button
+												onclick={() => setLocale('en')}
+												class="rounded-md bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 transition hover:bg-blue-200"
+											>
+												English
+											</button>
+											<button
+												onclick={() => setLocale('es')}
+												class="rounded-md bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 transition hover:bg-blue-200"
+											>
+												Español
+											</button>
+											<button
+												onclick={() => setLocale('de')}
+												class="rounded-md bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 transition hover:bg-blue-200"
+											>
+												Deutsch
+											</button>
+											<button
+												onclick={() => setLocale('fr')}
+												class="rounded-md bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 transition hover:bg-blue-200"
+											>
+												Français
+											</button>
+											<button
+												onclick={() => setLocale('sq')}
+												class="rounded-md bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 transition hover:bg-blue-200"
+											>
+												Shqip
+											</button>
+										</div>
+									</div>
+								</li>
+								<!-- Delete Account Section -->
 								<form action="/logout?/deleteAccount" method="POST" use:enhance>
 									<li class="py-2">
 										<button
 											type="submit"
 											class="w-full rounded-lg bg-red-500 px-4 py-2 font-semibold text-white shadow-sm transition hover:bg-red-600 hover:shadow-md"
 										>
-											Delete Account
+											{m.delete_account()}
 										</button>
 									</li>
 								</form>
@@ -116,19 +157,19 @@
 
 				<!-- User Stats -->
 				<div class="flex items-center justify-center gap-6 text-sm sm:items-start sm:justify-start">
-					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? 'post' : 'posts'}</p>
+					<p><span class="font-semibold">{allPosts}</span> {allPosts === 1 ? m.post() : m.posts()}</p>
 					<p
 						onclick={() => (showFollowing = !showFollowing)}
 						class="cursor-pointer hover:underline"
 					>
-						<span class="font-semibold">{following}</span> following
+						<span class="font-semibold">{following}</span> {m.following()}
 					</p>
 					<p
 						onclick={() => (showFollowers = !showFollowers)}
 						class="cursor-pointer hover:underline"
 					>
 						<span class="font-semibold">{followers}</span>
-						{followers === 1 ? 'follower' : 'followers'}
+						{followers === 1 ? m.follower() : m.followers()}
 					</p>
 				</div>
 
@@ -162,12 +203,12 @@
 			class="fixed top-0 right-0 z-50 h-full w-full max-w-sm overflow-y-auto border-zinc-800 bg-zinc-900 p-6 shadow-xl sm:rounded-l-2xl sm:border-l"
 		>
 			<div class="mb-4 flex items-center justify-between">
-				<h2 class="text-lg font-bold text-white">Followers</h2>
+				<h2 class="text-lg font-bold text-white">{m.followers()}</h2>
 				<button
 					onclick={() => (showFollowers = false)}
 					class="text-sm text-white hover:text-red-400"
 				>
-					Close
+					{m.close()}
 				</button>
 			</div>
 
@@ -187,7 +228,7 @@
 						</div>
 					</div>
 					<a href={`/api/profile/${follower.username}`}>
-						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> Visit </button>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> {m.visit()} </button>
 					</a>
 				</div>
 			{/each}
@@ -200,12 +241,12 @@
 			class="fixed top-0 right-0 z-50 h-full w-full max-w-sm overflow-y-auto border-zinc-800 bg-zinc-900 p-6 shadow-xl sm:rounded-l-2xl sm:border-l"
 		>
 			<div class="mb-4 flex items-center justify-between">
-				<h2 class="text-lg font-bold text-white">Following</h2>
+				<h2 class="text-lg font-bold text-white">{m.following()}</h2>
 				<button
 					onclick={() => (showFollowing = false)}
 					class="text-sm text-white hover:text-red-400"
 				>
-					Close
+					{m.close()}
 				</button>
 			</div>
 
@@ -225,7 +266,7 @@
 						</div>
 					</div>
 					<a href={`/api/profile/${following.username}`}>
-						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> Visit </button>
+						<button class="text-xs font-semibold text-blue-500 hover:text-blue-400"> {m.visit()} </button>
 					</a>
 				</div>
 			{/each}

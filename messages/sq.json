@@ -1,4 +1,19 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from sq!"
+	"hello_world": "Përshëndetje, {name} nga sq!",
+	"profile_title": "Profili",
+	"posts": "postime",
+	"post": "postim",
+	"followers": "ndjekës",
+	"follower": "ndjekës",
+	"following": "ndjek",
+	"edit_profile": "Ndrysho profilin",
+	"log_out": "Dil",
+	"settings": "Cilësimet",
+	"delete_account": "Fshij llogarinë",
+	"close": "Mbyll",
+	"visit": "Vizito",
+	"admin": "Admin",
+	"language": "Gjuha",
+	"select_language": "Zgjidh gjuhën"
 }

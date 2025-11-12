@@ -1,4 +1,19 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from fr!"
+	"hello_world": "Bonjour, {name} de fr!",
+	"profile_title": "Profil",
+	"posts": "publications",
+	"post": "publication",
+	"followers": "abonnés",
+	"follower": "abonné",
+	"following": "abonnements",
+	"edit_profile": "Modifier le profil",
+	"log_out": "Se déconnecter",
+	"settings": "Paramètres",
+	"delete_account": "Supprimer le compte",
+	"close": "Fermer",
+	"visit": "Visiter",
+	"admin": "Admin",
+	"language": "Langue",
+	"select_language": "Sélectionner la langue"
 }
